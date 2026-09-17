@@ -415,7 +415,7 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 <div class="topbar">
   <div class="logo-area">
     <div class="logo-cube">
-      <img src="assets/logo.png" alt="logo" onerror="this.style.display='none';this.parentElement.textContent='🧠';this.parentElement.style.fontSize='2rem'">
+      <img src="assets/logo.webp" alt="logo" onerror="this.style.display='none';this.parentElement.textContent='🧠';this.parentElement.style.fontSize='2rem'">
     </div>
     <div class="app-title"><span class="e1">ENIG</span>MAX</div>
   </div>
@@ -1370,7 +1370,7 @@ document.getElementById('enem_btnRetry').addEventListener('click',()=>startEnem(
    RPG DUNGEON MODE
 ═══════════════════════════════════════════ */
 const RPG_ENEMIES=[
-  {id:'goblin',name:'Goblin das Sombras',sprite:'👹',badge:'💀',bg:'rgba(230,0,35,.15)',flavor:'Pequeno, rápido e traiçoeiro.',maxHp:3,diff:'FÁCIL',diffColor:'var(--mint)',diffBorder:'rgba(16,185,129,.3)',lvlFilter:'facil',qCount:5},
+  {id:'goblin',name:'Goblin das Sombras',sprite:"assets/goblin/goblin_idle.webp",badge:'💀',bg:'rgba(230,0,35,.15)',flavor:'Pequeno, rápido e traiçoeiro.',maxHp:3,diff:'FÁCIL',diffColor:'var(--mint)',diffBorder:'rgba(16,185,129,.3)',lvlFilter:'facil',qCount:5},
   {id:'knight',name:'Cavaleiro Corrompido',sprite:'🪖',badge:'⚔️',bg:'rgba(245,158,11,.15)',flavor:'Armadura pesada.',maxHp:4,diff:'MÉDIO',diffColor:'var(--gold)',diffBorder:'rgba(245,158,11,.3)',lvlFilter:'medio',qCount:6},
   {id:'mage',name:'Mago das Trevas',sprite:'🧙',badge:'🔮',bg:'rgba(139,92,246,.15)',flavor:'Feitiços devastadores.',maxHp:4,diff:'DIFÍCIL',diffColor:'var(--purple)',diffBorder:'rgba(139,92,246,.3)',lvlFilter:'dificil',qCount:6},
   {id:'dragon',name:'Dragão Ancião',sprite:'🐉',badge:'🔥',bg:'rgba(255,77,77,.15)',flavor:'O guardião final.',maxHp:5,diff:'ÉPICO',diffColor:'var(--accent2)',diffBorder:'rgba(255,77,77,.3)',lvlFilter:'mixed',qCount:8}
