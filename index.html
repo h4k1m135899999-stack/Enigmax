@@ -1562,12 +1562,15 @@ function animEnemy(type){
     let f=1;
     clearInterval(enemyAtkTimer);
     enemyAtkTimer=setInterval(()=>{
-      if(f<frames.length){el.innerHTML=frames[f];}
-      f++;
-      if(f>=frames.length){
-        clearInterval(enemyAtkTimer);
-        el.innerHTML=frames[0];
-      }
+        console.log('FRAME INIMIGO:', f, frames[f]);
+        if(f<frames.length){
+            el.innerHTML=frames[f];
+        }
+        f++;
+        if(f>=frames.length){
+            clearInterval(enemyAtkTimer);
+            el.innerHTML=frames[0];
+        }
     },80);
   }else{
     void el.offsetWidth;
