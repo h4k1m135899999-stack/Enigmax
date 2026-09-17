@@ -876,13 +876,21 @@ async function carregarDados() {
   }
 
   // Monta ENEMY_SPRITES
-  ENEMY_SPRITES = {};
-  for (const [id, obj] of Object.entries(sprites.enemies || {})) {
-    const frames = [];
-    if (obj.idle) frames.push(`<img src="${obj.idle}" alt="${id}">`);
-    if (obj.atk)  frames.push(`<img src="${obj.atk}" alt="${id} atk">`);
-    ENEMY_SPRITES[id] = frames;
-  }
+    ENEMY_SPRITES = {};
+
+    for (const [id, obj] of Object.entries(sprites.enemies || {})) {
+        const frames = [];
+
+        if (obj.idle) {
+            frames.push(`<img src="${obj.idle}" alt="${id}">`);
+        }
+
+        (obj.atk || []).forEach(src => {
+            frames.push(`<img src="${src}" alt="${id} atk">`);
+        });
+
+        ENEMY_SPRITES[id] = frames;
+    }
 }
 
 /* ═══════════════════════════════════════════
