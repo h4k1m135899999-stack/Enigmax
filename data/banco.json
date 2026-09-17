@@ -1,0 +1,149 @@
+[
+  {"topic":"mat","lvl":"facil","text":"25% de 200 é:","options":["25","50","75","100"],"answerIdx":1,"explain":"25% = 1/4. 200 ÷ 4 = 50"},
+  {"topic":"mat","lvl":"facil","text":"Um aumento de 20% em R$100:","options":["R$110","R$120","R$125","R$140"],"answerIdx":1,"explain":"100 × 1,20 = R$120"},
+  {"topic":"mat","lvl":"facil","text":"Qual é a raiz quadrada de 144?","options":["10","11","12","14"],"answerIdx":2,"explain":"12 × 12 = 144"},
+  {"topic":"mat","lvl":"medio","text":"2³ × 2² =","options":["2^5 = 32","2^6 = 64","2^5 = 16","32"],"answerIdx":0,"explain":"2^(3+2) = 2^5 = 32"},
+  {"topic":"mat","lvl":"medio","text":"Se x² = 49, então x pode ser:","options":["6 ou −6","7 ou −7","49 ou −49","√7 ou −√7"],"answerIdx":1,"explain":"√49 = 7. Como x² = 49, x = ±7"},
+  {"topic":"mat","lvl":"dificil","text":"Uma PA tem a1=5 e a3=15. O valor de a2:","options":["8","10","12","20"],"answerIdx":1,"explain":"a2=(a1+a3)/2=(5+15)/2=10"},
+  {"topic":"mat","lvl":"dificil","text":"log₂(64) =","options":["4","5","6","7"],"answerIdx":2,"explain":"2^6 = 64, logo log₂(64) = 6"},
+
+  {"topic":"port","lvl":"facil","text":"A palavra \"chuva\" tem quantas sílabas?","options":["1","2","3","4"],"answerIdx":1,"explain":"chu-va = 2 sílabas"},
+  {"topic":"port","lvl":"facil","text":"\"Eles *foram* à escola\". O verbo está no:","options":["Presente","Pretérito","Futuro","Infinitivo"],"answerIdx":1,"explain":"Foram = Pretérito Perfeito"},
+  {"topic":"port","lvl":"medio","text":"Qual é o plural de \"cidadão\"?","options":["cidadãos","cidadões","cidadães","cidadans"],"answerIdx":0,"explain":"cidadão → cidadãos"},
+  {"topic":"port","lvl":"medio","text":"A vírgula em \"Choveu muito, logo saí tarde\" indica:","options":["Aposto","Vocativo","Coordenação","Subordinação"],"answerIdx":2,"explain":"Logo é conjunção coordenativa (conclusiva)"},
+  {"topic":"port","lvl":"dificil","text":"\"Pedi *que viesse*\". Isso é oração:","options":["Principal","Subordinada substantiva","Subordinada adjetiva","Coordenada"],"answerIdx":1,"explain":"que viesse = oração subordinada substantiva objetiva direta"},
+
+  {"topic":"hist","lvl":"facil","text":"A independência do Brasil foi em:","options":["1500","1808","1822","1889"],"answerIdx":2,"explain":"7 de setembro de 1822"},
+  {"topic":"hist","lvl":"facil","text":"Quem descobriu o Brasil?","options":["Cristóvão Colombo","Pedro Álvares Cabral","Vasco da Gama","Fernando de Noronha"],"answerIdx":1,"explain":"Cabral chegou em 22 de abril de 1500"},
+  {"topic":"hist","lvl":"medio","text":"A Revolução Francesa começou em:","options":["1789","1815","1848","1900"],"answerIdx":0,"explain":"A Queda da Bastilha foi em 14/07/1789"},
+  {"topic":"hist","lvl":"medio","text":"O Iluminismo tinha como lema:","options":["Fé e razão","Liberdade, igualdade, fraternidade","Trabalho e progresso","Ordem e progresso"],"answerIdx":1,"explain":"Lema da Revolução Francesa, influenciada pelo Iluminismo"},
+  {"topic":"hist","lvl":"dificil","text":"A Guerra dos Farrapos ocorreu em:","options":["Minas Gerais","São Paulo","Rio Grande do Sul","Bahia"],"answerIdx":2,"explain":"1835-1845 no RS, revolta contra o Império"},
+
+  {"topic":"geo","lvl":"facil","text":"Qual o maior país do mundo em área?","options":["China","EUA","Canadá","Rússia"],"answerIdx":3,"explain":"Rússia: ~17 milhões km²"},
+  {"topic":"geo","lvl":"facil","text":"O Rio Amazonas está em qual continente?","options":["África","Ásia","América do Sul","Europa"],"answerIdx":2,"explain":"Nasce nos Andes e desemboca no Atlântico"},
+  {"topic":"geo","lvl":"medio","text":"A linha do Equador divide a Terra em:","options":["Leste e Oeste","Norte e Sul","Dia e Noite","Oceanos"],"answerIdx":1,"explain":"Separa Hemisfério Norte e Sul"},
+  {"topic":"geo","lvl":"medio","text":"O clima predominante no Brasil é:","options":["Polar","Temperado","Tropical","Desértico"],"answerIdx":2,"explain":"Brasil está majoritariamente na zona tropical"},
+  {"topic":"geo","lvl":"dificil","text":"A Cordilheira dos Andes está em qual continente?","options":["Ásia","África","América do Sul","Europa"],"answerIdx":2,"explain":"Maior cordilheira do mundo, costa oeste da América do Sul"},
+
+  {"topic":"fil","lvl":"facil","text":"Sócrates era um filósofo:","options":["Romano","Grego","Egípcio","Chinês"],"answerIdx":1,"explain":"Sócrates viveu em Atenas (Grécia Antiga)"},
+  {"topic":"fil","lvl":"medio","text":"\"Penso, logo existo\" é de:","options":["Platão","Aristóteles","Descartes","Kant"],"answerIdx":2,"explain":"René Descartes, no Discurso do Método"},
+  {"topic":"fil","lvl":"dificil","text":"O \"mito da caverna\" foi escrito por:","options":["Sócrates","Platão","Aristóteles","Nietzsche"],"answerIdx":1,"explain":"Aparece em \"A República\" de Platão"},
+
+  {"topic":"soc","lvl":"facil","text":"Max Weber foi um importante:","options":["Sociólogo","Matemático","Químico","Biólogo"],"answerIdx":0,"explain":"Um dos fundadores da Sociologia moderna"},
+  {"topic":"soc","lvl":"medio","text":"O conceito de \"mais-valia\" é de:","options":["Durkheim","Weber","Marx","Comte"],"answerIdx":2,"explain":"Karl Marx desenvolveu esse conceito no Capitalismo"},
+  {"topic":"soc","lvl":"dificil","text":"A \"solidariedade mecânica\" é um conceito de:","options":["Marx","Durkheim","Weber","Bourdieu"],"answerIdx":1,"explain":"Émile Durkheim diferenciou solidariedade mecânica e orgânica"},
+
+  {"topic":"fis","lvl":"facil","text":"A unidade de força no SI é:","options":["Joule","Watt","Newton","Pascal"],"answerIdx":2,"explain":"Newton (N) é a unidade de força"},
+  {"topic":"fis","lvl":"medio","text":"A fórmula da 2ª Lei de Newton é:","options":["F = ma","E = mc²","P = mv","V = d/t"],"answerIdx":0,"explain":"Força = massa × aceleração"},
+  {"topic":"fis","lvl":"dificil","text":"A velocidade da luz no vácuo é aproximadamente:","options":["300 m/s","3.000 m/s","300.000 km/s","300 km/s"],"answerIdx":2,"explain":"c ≈ 300.000 km/s ou 3×10⁸ m/s"},
+
+  {"topic":"qui","lvl":"facil","text":"A fórmula da água é:","options":["H₂O","CO₂","O₂","H₂O₂"],"answerIdx":0,"explain":"Dois átomos de hidrogênio e um de oxigênio"},
+  {"topic":"qui","lvl":"medio","text":"O pH 7 indica uma solução:","options":["Ácida","Básica","Neutra","Salina"],"answerIdx":2,"explain":"pH < 7 = ácido, pH = 7 = neutro, pH > 7 = básico"},
+  {"topic":"qui","lvl":"dificil","text":"Qual o número atômico do oxigênio?","options":["6","7","8","9"],"answerIdx":2,"explain":"O oxigênio tem 8 prótons (Z=8)"},
+
+  {"topic":"bio","lvl":"facil","text":"A célula animal tem parede celular?","options":["Sim","Não","Depende","Às vezes"],"answerIdx":1,"explain":"Apenas células vegetais têm parede celular"},
+  {"topic":"bio","lvl":"medio","text":"A fotossíntese ocorre em qual organela?","options":["Mitocôndria","Cloroplasto","Núcleo","Ribossomo"],"answerIdx":1,"explain":"Cloroplastos captam luz e produzem glicose"},
+  {"topic":"bio","lvl":"dificil","text":"Quantos cromossomos tem uma célula humana?","options":["23","46","48","92"],"answerIdx":1,"explain":"23 pares = 46 cromossomos no total"},
+
+  {"topic":"mat","lvl":"facil","text":"Quanto é 15 × 8?","options":["110","120","130","140"],"answerIdx":1,"explain":"15 × 8 = 120"},
+  {"topic":"mat","lvl":"facil","text":"A metade de 86 é:","options":["42","43","44","45"],"answerIdx":1,"explain":"86 ÷ 2 = 43"},
+  {"topic":"mat","lvl":"facil","text":"Qual o dobro de 35?","options":["60","65","70","75"],"answerIdx":2,"explain":"35 × 2 = 70"},
+  {"topic":"mat","lvl":"medio","text":"30% de 150 é:","options":["30","40","45","50"],"answerIdx":2,"explain":"30% = 0,30. 150 × 0,30 = 45"},
+  {"topic":"mat","lvl":"medio","text":"Um desconto de 15% em R$80:","options":["R$65","R$68","R$70","R$72"],"answerIdx":1,"explain":"15% de 80 = 12. 80 − 12 = R$68"},
+  {"topic":"mat","lvl":"medio","text":"Qual é a raiz cúbica de 27?","options":["2","3","4","9"],"answerIdx":1,"explain":"3 × 3 × 3 = 27"},
+  {"topic":"mat","lvl":"dificil","text":"Se log₁₀(x) = 3, então x é:","options":["30","100","300","1000"],"answerIdx":3,"explain":"10³ = 1000, logo x = 1000"},
+  {"topic":"mat","lvl":"dificil","text":"A soma dos ângulos internos de um hexágono:","options":["540°","600°","720°","900°"],"answerIdx":2,"explain":"(n−2)×180° = (6−2)×180° = 720°"},
+
+  {"topic":"port","lvl":"facil","text":"Qual o feminino de \"ator\"?","options":["atora","atriz","atora","atoresa"],"answerIdx":1,"explain":"ator → atriz"},
+  {"topic":"port","lvl":"facil","text":"\"Casa\" é uma palavra:","options":["Monossílaba","Dissílaba","Trissílaba","Polissílaba"],"answerIdx":1,"explain":"ca-sa = 2 sílabas"},
+  {"topic":"port","lvl":"facil","text":"O aumentativo de \"casa\" é:","options":["casinha","casona","casarão","casita"],"answerIdx":2,"explain":"casarão é o aumentativo comum"},
+  {"topic":"port","lvl":"medio","text":"Qual o plural de \"pão\"?","options":["pãos","pães","pões","pans"],"answerIdx":1,"explain":"pão → pães"},
+  {"topic":"port","lvl":"medio","text":"\"Ele é *mais alto que* eu\". Isso é grau:","options":["Superlativo","Comparativo","Normal","Aumentativo"],"answerIdx":1,"explain":"mais...que = grau comparativo de superioridade"},
+  {"topic":"port","lvl":"medio","text":"A palavra \"exato\" é:","options":["Oxítona","Paroxítona","Proparoxítona","Monossílaba"],"answerIdx":1,"explain":"e-XA-to, tônica na penúltima = paroxítona"},
+  {"topic":"port","lvl":"dificil","text":"\"Embora *chova*, irei\". A oração é:","options":["Coordenada","Subordinada concessiva","Subordinada causal","Principal"],"answerIdx":1,"explain":"embora = conjunção concessiva"},
+  {"topic":"port","lvl":"dificil","text":"O sujeito de \"Faz frio hoje\" é:","options":["Simples","Composto","Oculto","Inexistente"],"answerIdx":3,"explain":"Verbo fazer (tempo/clima) = oração sem sujeito"},
+
+  {"topic":"hist","lvl":"facil","text":"A proclamação da República no Brasil foi em:","options":["1822","1889","1930","1964"],"answerIdx":1,"explain":"15 de novembro de 1889"},
+  {"topic":"hist","lvl":"facil","text":"Tiradentes foi executado em:","options":["1789","1792","1822","1889"],"answerIdx":1,"explain":"21 de abril de 1792"},
+  {"topic":"hist","lvl":"medio","text":"A escravidão no Brasil acabou em:","options":["1850","1871","1885","1888"],"answerIdx":3,"explain":"Lei Áurea, 13 de maio de 1888"},
+  {"topic":"hist","lvl":"medio","text":"A Primeira Guerra Mundial começou em:","options":["1914","1918","1939","1945"],"answerIdx":0,"explain":"1914-1918"},
+  {"topic":"hist","lvl":"medio","text":"O Renascimento teve origem em qual país?","options":["França","Espanha","Itália","Alemanha"],"answerIdx":2,"explain":"Renascimento começou na Itália (séc. XIV-XVI)"},
+  {"topic":"hist","lvl":"dificil","text":"A Conjuração Mineira ocorreu em:","options":["1789","1792","1808","1822"],"answerIdx":0,"explain":"1789, movimento pela independência em MG"},
+  {"topic":"hist","lvl":"dificil","text":"O Tratado de Tordesilhas foi assinado em:","options":["1492","1494","1500","1822"],"answerIdx":1,"explain":"1494, dividiu terras entre Portugal e Espanha"},
+
+  {"topic":"geo","lvl":"facil","text":"Qual o oceano entre África e América?","options":["Pacífico","Índico","Atlântico","Ártico"],"answerIdx":2,"explain":"Oceano Atlântico separa os dois continentes"},
+  {"topic":"geo","lvl":"facil","text":"Quantos estados tem o Brasil?","options":["25","26","27","28"],"answerIdx":2,"explain":"26 estados + 1 Distrito Federal = 27 unidades"},
+  {"topic":"geo","lvl":"facil","text":"A capital do Brasil é:","options":["Rio de Janeiro","São Paulo","Brasília","Salvador"],"answerIdx":2,"explain":"Brasília, desde 1960"},
+  {"topic":"geo","lvl":"medio","text":"O maior deserto do mundo é:","options":["Saara","Gobi","Kalahari","Atacama"],"answerIdx":0,"explain":"Saara, no norte da África (~9 milhões km²)"},
+  {"topic":"geo","lvl":"medio","text":"Qual bioma é exclusivo do Brasil?","options":["Amazônia","Cerrado","Caatinga","Mata Atlântica"],"answerIdx":2,"explain":"Caatinga existe apenas no Brasil"},
+  {"topic":"geo","lvl":"dificil","text":"Quantos fusos horários tem o Brasil?","options":["2","3","4","5"],"answerIdx":2,"explain":"Brasil tem 4 fusos horários"},
+  {"topic":"geo","lvl":"dificil","text":"O ponto mais alto do Brasil é:","options":["Pico da Neblina","Pico da Bandeira","Pedra da Mina","Monte Roraima"],"answerIdx":0,"explain":"Pico da Neblina, 2.995m, na fronteira com Venezuela"},
+
+  {"topic":"fil","lvl":"facil","text":"Platão foi discípulo de:","options":["Aristóteles","Sócrates","Descartes","Kant"],"answerIdx":1,"explain":"Platão foi aluno de Sócrates"},
+  {"topic":"fil","lvl":"medio","text":"O \"contrato social\" é um conceito de:","options":["Hobbes","Rousseau","Locke","Todos acima"],"answerIdx":3,"explain":"Hobbes, Locke e Rousseau desenvolveram teorias do contrato social"},
+  {"topic":"fil","lvl":"medio","text":"\"Deus está morto\" é uma frase de:","options":["Marx","Nietzsche","Sartre","Camus"],"answerIdx":1,"explain":"Friedrich Nietzsche em \"A Gaia Ciência\""},
+  {"topic":"fil","lvl":"dificil","text":"O \"imperativo categórico\" é de:","options":["Kant","Hegel","Schopenhauer","Fichte"],"answerIdx":0,"explain":"Immanuel Kant, princípio da ética kantiana"},
+
+  {"topic":"soc","lvl":"facil","text":"Karl Marx nasceu em qual país?","options":["França","Inglaterra","Alemanha","Rússia"],"answerIdx":2,"explain":"Marx nasceu na Prússia (atual Alemanha)"},
+  {"topic":"soc","lvl":"medio","text":"O conceito de \"fato social\" é de:","options":["Marx","Weber","Durkheim","Comte"],"answerIdx":2,"explain":"Émile Durkheim criou o conceito de fato social"},
+  {"topic":"soc","lvl":"medio","text":"A \"ação social\" é um conceito central de:","options":["Marx","Weber","Durkheim","Comte"],"answerIdx":1,"explain":"Max Weber desenvolveu a teoria da ação social"},
+  {"topic":"soc","lvl":"dificil","text":"O \"habitus\" é um conceito de:","options":["Bourdieu","Foucault","Giddens","Habermas"],"answerIdx":0,"explain":"Pierre Bourdieu criou o conceito de habitus"},
+
+  {"topic":"fis","lvl":"facil","text":"A temperatura de ebulição da água ao nível do mar é:","options":["0°C","50°C","100°C","200°C"],"answerIdx":2,"explain":"Água ferve a 100°C (pressão normal)"},
+  {"topic":"fis","lvl":"facil","text":"A unidade de energia no SI é:","options":["Newton","Watt","Joule","Caloria"],"answerIdx":2,"explain":"Joule (J) é a unidade de energia"},
+  {"topic":"fis","lvl":"medio","text":"A aceleração da gravidade na Terra é aproximadamente:","options":["9,8 m/s²","10 m/s²","9,8 km/s²","Ambas a e b"],"answerIdx":3,"explain":"g ≈ 9,8 m/s² (ou ~10 m/s² em cálculos)"},
+  {"topic":"fis","lvl":"medio","text":"Em um espelho plano, a imagem é:","options":["Real e invertida","Virtual e do mesmo tamanho","Ampliada","Reduzida"],"answerIdx":1,"explain":"Espelho plano: imagem virtual, mesmo tamanho, invertida lateralmente"},
+  {"topic":"fis","lvl":"dificil","text":"A fórmula da energia cinética é:","options":["Ec = mgh","Ec = ½mv²","Ec = mc²","Ec = Fd"],"answerIdx":1,"explain":"Energia cinética = metade da massa × velocidade ao quadrado"},
+
+  {"topic":"qui","lvl":"facil","text":"O símbolo do ouro é:","options":["O","Au","Ag","Go"],"answerIdx":1,"explain":"Au vem do latim \"aurum\""},
+  {"topic":"qui","lvl":"facil","text":"Quantos átomos de oxigênio tem o CO₂?","options":["1","2","3","4"],"answerIdx":1,"explain":"CO₂ tem 1 carbono e 2 oxigênios"},
+  {"topic":"qui","lvl":"medio","text":"A fórmula do sal de cozinha é:","options":["NaCl","KCl","CaCl₂","NaOH"],"answerIdx":0,"explain":"Cloreto de sódio = NaCl"},
+  {"topic":"qui","lvl":"medio","text":"Qual elemento tem símbolo Fe?","options":["Fósforo","Flúor","Ferro","Frâncio"],"answerIdx":2,"explain":"Fe = Ferro (do latim \"ferrum\")"},
+  {"topic":"qui","lvl":"medio","text":"A camada de valência é a camada:","options":["Primeira","Mais interna","Mais externa","Do núcleo"],"answerIdx":2,"explain":"Camada de valência = camada eletrônica mais externa"},
+  {"topic":"qui","lvl":"dificil","text":"Quantos prótons tem o átomo de carbono?","options":["4","6","8","12"],"answerIdx":1,"explain":"Carbono tem número atômico 6 (6 prótons)"},
+  {"topic":"qui","lvl":"dificil","text":"A massa molar da água (H₂O) é aproximadamente:","options":["16 g/mol","18 g/mol","20 g/mol","22 g/mol"],"answerIdx":1,"explain":"H=1, O=16. (2×1)+16 = 18 g/mol"},
+
+  {"topic":"bio","lvl":"facil","text":"O coração humano tem quantas câmaras?","options":["2","3","4","5"],"answerIdx":2,"explain":"2 átrios e 2 ventrículos = 4 câmaras"},
+  {"topic":"bio","lvl":"facil","text":"A respiração celular ocorre em qual organela?","options":["Núcleo","Mitocôndria","Cloroplasto","Ribossomo"],"answerIdx":1,"explain":"Mitocôndrias produzem energia (ATP)"},
+  {"topic":"bio","lvl":"medio","text":"O DNA está localizado principalmente em qual estrutura?","options":["Citoplasma","Núcleo","Membrana","Ribossomo"],"answerIdx":1,"explain":"DNA fica no núcleo celular"},
+  {"topic":"bio","lvl":"medio","text":"Qual o tipo sanguíneo doador universal?","options":["A","B","AB","O"],"answerIdx":3,"explain":"Tipo O− pode doar para todos"},
+  {"topic":"bio","lvl":"medio","text":"A hemoglobina transporta principalmente:","options":["Água","Oxigênio","Glicose","Proteínas"],"answerIdx":1,"explain":"Hemoglobina nas hemácias transporta O₂"},
+  {"topic":"bio","lvl":"dificil","text":"Quantos aminoácidos essenciais existem para humanos?","options":["8","9","12","20"],"answerIdx":1,"explain":"9 aminoácidos são essenciais (corpo não produz)"},
+  {"topic":"bio","lvl":"dificil","text":"A síntese de proteínas ocorre em qual organela?","options":["Núcleo","Mitocôndria","Ribossomo","Complexo de Golgi"],"answerIdx":2,"explain":"Ribossomos sintetizam proteínas a partir do RNA"},
+
+  {"topic":"mat","lvl":"facil","text":"10% de 150 é:","options":["10","15","20","25"],"answerIdx":1,"explain":"10% = 0,1 → 150 × 0,1 = 15"},
+  {"topic":"mat","lvl":"medio","text":"Qual o valor de 3² + 4²?","options":["7","12","25","49"],"answerIdx":2,"explain":"9 + 16 = 25"},
+  {"topic":"mat","lvl":"dificil","text":"Uma PG tem razão 2 e a1=3. O a3 vale:","options":["6","9","12","24"],"answerIdx":2,"explain":"a3 = 3 × 2² = 12"},
+
+  {"topic":"port","lvl":"facil","text":"Qual dessas palavras é um verbo?","options":["correr","rápido","azul","mesa"],"answerIdx":0,"explain":"\"correr\" indica ação"},
+  {"topic":"port","lvl":"medio","text":"Em \"Ela chegou cedo\", o sujeito é:","options":["Ela","chegou","cedo","oculto"],"answerIdx":0,"explain":"\"Ela\" pratica a ação"},
+  {"topic":"port","lvl":"dificil","text":"A palavra \"infelizmente\" é um:","options":["Substantivo","Verbo","Advérbio","Adjetivo"],"answerIdx":2,"explain":"Termina em -mente → advérbio"},
+
+  {"topic":"hist","lvl":"facil","text":"A Proclamação da República foi em:","options":["1822","1889","1930","1964"],"answerIdx":1,"explain":"15 de novembro de 1889"},
+  {"topic":"hist","lvl":"medio","text":"A Primeira Guerra Mundial ocorreu entre:","options":["1914-1918","1939-1945","1800-1815","1850-1860"],"answerIdx":0,"explain":"Grande guerra europeia"},
+  {"topic":"hist","lvl":"dificil","text":"Getúlio Vargas governou o Brasil no período:","options":["1889-1891","1930-1945","1964-1985","1990-2000"],"answerIdx":1,"explain":"Era Vargas"},
+
+  {"topic":"geo","lvl":"facil","text":"Qual é o menor continente?","options":["Europa","Oceania","África","Antártida"],"answerIdx":1,"explain":"Oceania é o menor em área"},
+  {"topic":"geo","lvl":"medio","text":"O deserto do Saara está em qual continente?","options":["Ásia","África","América","Europa"],"answerIdx":1,"explain":"Norte da África"},
+  {"topic":"geo","lvl":"dificil","text":"O fenômeno El Niño afeta principalmente:","options":["Correntes marítimas","Vulcões","Terremotos","Placas tectônicas"],"answerIdx":0,"explain":"Alterações nas correntes do Pacífico"},
+
+  {"topic":"fil","lvl":"facil","text":"Platão foi discípulo de:","options":["Aristóteles","Sócrates","Descartes","Kant"],"answerIdx":1,"explain":"Sócrates foi seu mestre"},
+  {"topic":"fil","lvl":"medio","text":"Aristóteles estudava principalmente:","options":["Ideias","Formas","Lógica e ciência","Religião"],"answerIdx":2,"explain":"Base da lógica formal"},
+  {"topic":"fil","lvl":"dificil","text":"Nietzsche criticava principalmente:","options":["Ciência","Religião e moral tradicional","Matemática","Arte"],"answerIdx":1,"explain":"Crítica aos valores tradicionais"},
+
+  {"topic":"soc","lvl":"facil","text":"A sociedade é estudada por:","options":["Biologia","Sociologia","Química","Física"],"answerIdx":1,"explain":"Objeto da Sociologia"},
+  {"topic":"soc","lvl":"medio","text":"Durkheim estudava:","options":["Economia","Religião e sociedade","Genética","Química"],"answerIdx":1,"explain":"Fatos sociais e religião"},
+  {"topic":"soc","lvl":"dificil","text":"Bourdieu criou o conceito de:","options":["Capital cultural","Mais-valia","Alienação","Estado"],"answerIdx":0,"explain":"Capital cultural influencia oportunidades"},
+
+  {"topic":"fis","lvl":"facil","text":"Velocidade é:","options":["Força","Distância/tempo","Energia","Pressão"],"answerIdx":1,"explain":"v = d/t"},
+  {"topic":"fis","lvl":"medio","text":"Energia cinética depende de:","options":["Altura","Velocidade","Temperatura","Pressão"],"answerIdx":1,"explain":"Ec = mv²/2"},
+  {"topic":"fis","lvl":"dificil","text":"A unidade de energia no SI é:","options":["Newton","Joule","Watt","Pascal"],"answerIdx":1,"explain":"Joule (J)"},
+
+  {"topic":"qui","lvl":"facil","text":"O oxigênio é um:","options":["Metal","Gás","Líquido","Sólido"],"answerIdx":1,"explain":"Elemento gasoso"},
+  {"topic":"qui","lvl":"medio","text":"CO₂ é chamado de:","options":["Oxigênio","Dióxido de carbono","Água","Hidrogênio"],"answerIdx":1,"explain":"Composto por C + O₂"},
+  {"topic":"qui","lvl":"dificil","text":"Número de prótons define:","options":["Massa","Elemento","Energia","Volume"],"answerIdx":1,"explain":"Define o elemento químico"},
+
+  {"topic":"bio","lvl":"facil","text":"O coração faz parte de qual sistema?","options":["Digestório","Respiratório","Circulatório","Nervoso"],"answerIdx":2,"explain":"Bombeia o sangue"},
+  {"topic":"bio","lvl":"medio","text":"O DNA fica localizado no:","options":["Citoplasma","Núcleo","Ribossomo","Membrana"],"answerIdx":1,"explain":"Material genético no núcleo"},
+  {"topic":"bio","lvl":"dificil","text":"A mitose resulta em quantas células?","options":["1","2","3","4"],"answerIdx":1,"explain":"Duas células idênticas"}
+]

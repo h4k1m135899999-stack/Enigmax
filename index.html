@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENIGMAX — ENEM & Conhecimentos Gerais</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════
+   DESIGN TOKENS & THEMES
+═══════════════════════════════════ */
+:root {
+  --primary: #e60023;
+  --primary-hover: #ff1a3b;
+  --primary-light: rgba(230, 0, 35, 0.1);
+  --accent2: #ff4d4d;
+  --blue: #3b82f6;
+  --blue2: #60a5fa;
+  --gold: #f59e0b;
+  --gold2: #fbbf24;
+  --mint: #10b981;
+  --purple: #8b5cf6;
+
+  --bg: #09090b;
+  --bg-card: #18181b;
+  --bg-card-hover: #27272a;
+  --surface: #27272a;
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --border: #27272a;
+  --border2: #3f3f46;
+  --shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --nav-bg: rgba(24, 24, 27, 0.9);
+
+  --font-ui: 'Rajdhani', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+
+[data-theme="light"] {
+  --bg: #f4f4f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f4f5;
+  --text: #18181b;
+  --text-muted: #71717a;
+  --border: #e4e4e7;
+  --border2: #d4d4d8;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --surface: #ffffff;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body);transition:background .3s, color .3s}
+body{overflow-x:hidden;padding-bottom:80px}
+
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.02) 2px,rgba(0,0,0,.02) 4px);pointer-events:none;z-index:9999;opacity:0.5}
+
+.hidden{display:none!important}
+
+/* ── LOADING OVERLAY ── */
+#loadingOverlay{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .4s}
+#loadingOverlay.hide{opacity:0;pointer-events:none}
+.loader-cube{width:60px;height:60px;border:3px solid var(--border2);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase}
+.loader-error{color:var(--primary);font-size:.8rem;text-align:center;max-width:400px;line-height:1.5}
+
+/* ── TOPBAR ── */
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(12px)}
+.logo-area{display:flex;align-items:center;gap:8px;flex-direction:row}
+.logo-cube{width:40px;height:40px;filter:drop-shadow(0 0 8px rgba(230,0,35,0.5))}
+.logo-cube img{width:100%;height:100%;object-fit:contain;}
+.app-title{font-family:var(--font-ui);font-weight:800;font-size:1.5rem;letter-spacing:-0.02em}
+.app-title .e1{color:var(--primary)}
+.topbar-right{display:flex;align-items:center;gap:6px}
+.theme-toggle{background:var(--bg-card);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);transition:all .2s;font-size:1.2rem}
+.theme-toggle:hover{background:var(--bg-card-hover);transform:scale(1.05)}
+
+.hud-pill{font-family:var(--font-mono);font-size:.68rem;color:var(--blue2);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:6px;padding:6px 12px}
+
+/* ── MAIN CONTENT ── */
+.container{max-width:800px;margin:0 auto;padding:20px 16px}
+
+/* ── HOME HERO ── */
+.home-hero{text-align:center;padding:30px 0 24px;position:relative}
+.home-hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(230,0,35,.08) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(230,0,35,.4);border-radius:6px;padding:6px 16px;margin-bottom:16px;background:rgba(230,0,35,.06)}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--primary);box-shadow:0 0 8px var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-badge-text{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.15em;color:var(--primary);text-transform:uppercase}
+.hero-title{font-family:var(--font-ui);font-size:clamp(2.5rem,8vw,4.5rem);font-weight:800;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
+.hero-title .e1{color:var(--primary);text-shadow:0 0 30px rgba(230,0,35,.6)}
+.hero-sub{font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;margin-bottom:28px;text-transform:uppercase}
+
+.home-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.stat-tag{font-family:var(--font-mono);font-size:.65rem;color:var(--blue2);background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:6px;padding:6px 12px;display:flex;align-items:center;gap:6px}
+.stat-tag-val{color:var(--text);font-weight:700}
+
+.section-title{font-family:var(--font-ui);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+
+.topic-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:20px;scrollbar-width:none}
+.topic-row::-webkit-scrollbar{display:none}
+.topic-pill{font-family:var(--font-mono);font-size:.7rem;padding:8px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--bg-card);color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap;user-select:none}
+.topic-pill:hover{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+.topic-pill.on{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:700}
+
+.mode-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-bottom:24px}
+@media(max-width:400px){.mode-grid{grid-template-columns:1fr}}
+
+.mode-card{background:var(--bg-card);border:2px solid var(--border);border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.mode-card:hover{border-color:var(--text-muted);transform:translateY(-2px)}
+.mode-card.sel{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 4px 20px rgba(230,0,35,0.3)}
+.mode-card.sel .mode-icon, .mode-card.sel .mode-desc{color:rgba(255,255,255,0.9)}
+.mode-icon{font-size:2.2rem;margin-bottom:8px;display:block}
+.mode-name{font-weight:700;font-size:1rem;margin-bottom:4px;font-family:var(--font-ui);letter-spacing:.02em}
+.mode-desc{font-size:.75rem;color:var(--text-muted);font-family:var(--font-mono)}
+
+.diff-pills{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.diff-pill{font-family:var(--font-mono);font-size:.7rem;padding:8px 16px;border-radius:20px;border:1px solid var(--border2);background:var(--bg-card);cursor:pointer;transition:all .2s;user-select:none}
+.diff-pill:hover{border-color:var(--mint);background:rgba(16,185,129,.1)}
+.diff-pill.on{font-weight:700}
+.diff-pill[data-d="facil"].on{background:var(--mint);color:#fff;border-color:var(--mint)}
+.diff-pill[data-d="medio"].on{background:var(--gold);color:#fff;border-color:var(--gold)}
+.diff-pill[data-d="dificil"].on{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.start-btn{width:100%;padding:16px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);font-weight:700;font-size:1.05rem;letter-spacing:0.05em;cursor:pointer;transition:all .2s;box-shadow:0 4px 15px rgba(230,0,35,0.3);display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-ui)}
+.start-btn:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(230,0,35,0.4)}
+.start-btn:active{transform:scale(0.98)}
+
+.sec-btn{width:100%;padding:12px;background:transparent;color:var(--text);border:1px solid var(--border2);border-radius:var(--radius);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s;margin-top:10px}
+.sec-btn:hover{background:var(--bg-card-hover);border-color:var(--border)}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:60px;background:var(--nav-bg);backdrop-filter:blur(10px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-muted);text-decoration:none;font-size:.65rem;font-weight:600;cursor:pointer;transition:color .2s;font-family:var(--font-mono);letter-spacing:.05em;text-transform:uppercase}
+.nav-item.active{color:var(--primary)}
+.nav-icon{font-size:1.3rem}
+
+/* ── SCREENS ── */
+.screen{display:none;position:relative;z-index:1;min-height:100vh;padding:0 0 100px}
+.screen.active{display:block;animation:screenIn .3s ease}
+@keyframes screenIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.game-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:10}
+.back-btn{width:40px;height:40px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.2rem;transition:all .2s}
+.back-btn:hover{background:var(--bg-card-hover)}
+
+.hud{display:flex;justify-content:space-between;padding:16px;font-family:var(--font-mono);font-size:.8rem;color:var(--text-muted);gap:12px}
+.hud-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hud-label{font-size:.65rem;letter-spacing:.08em}
+.hud-val{color:var(--text);font-weight:700;font-size:1.1rem}
+.hud-val.g{color:var(--mint)}
+.hud-val.r{color:var(--primary)}
+
+.quiz-container{padding:0 16px 20px}
+.q-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:8px;flex-wrap:wrap}
+.q-num{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.1em}
+
+.chip{font-family:var(--font-mono);font-size:.65rem;padding:4px 10px;border-radius:4px;display:inline-flex;align-items:center;gap:4px;font-weight:600;letter-spacing:.05em}
+.ch-mat{background:rgba(59,130,246,.12);color:var(--blue2);border:1px solid rgba(59,130,246,.3)}
+.ch-port{background:rgba(139,92,246,.12);color:var(--purple);border:1px solid rgba(139,92,246,.3)}
+.ch-hist{background:rgba(245,158,11,.12);color:var(--gold);border:1px solid rgba(245,158,11,.3)}
+.ch-geo{background:rgba(16,185,129,.12);color:var(--mint);border:1px solid rgba(16,185,129,.3)}
+.ch-fil{background:rgba(230,0,35,.12);color:var(--primary);border:1px solid rgba(230,0,35,.3)}
+.ch-soc{background:rgba(236,72,153,.12);color:#ec4899;border:1px solid rgba(236,72,153,.3)}
+.ch-fis{background:rgba(6,182,212,.12);color:#06b6d4;border:1px solid rgba(6,182,212,.3)}
+.ch-qui{background:rgba(168,85,247,.12);color:#a855f7;border:1px solid rgba(168,85,247,.3)}
+.ch-bio{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.3)}
+
+.q-text{font-size:1.15rem;font-weight:600;line-height:1.6;margin-bottom:20px;color:var(--text)}
+
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{width:100%;padding:16px;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;text-align:left;cursor:pointer;font-size:.95rem;transition:all .2s;display:flex;align-items:center;gap:12px;color:var(--text)}
+.opt:hover{border-color:var(--primary);background:var(--primary-light);transform:translateX(4px)}
+.opt-k{width:32px;height:32px;border-radius:8px;background:var(--bg-card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;font-family:var(--font-mono);flex-shrink:0}
+.opt:hover .opt-k{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.correct{background:rgba(16,185,129,.12);border-color:var(--mint);color:var(--mint);font-weight:600}
+.opt.correct .opt-k{background:var(--mint);color:#fff;border-color:var(--mint)}
+.opt.correct-chosen{background:rgba(16,185,129,.12);border-color:var(--mint);color:var(--mint);font-weight:600}
+.opt.correct-chosen .opt-k{background:var(--mint);color:#fff;border-color:var(--mint)}
+.opt.wrong{background:rgba(230,0,35,.12);border-color:var(--primary);color:var(--primary);font-weight:600}
+.opt.wrong .opt-k{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt:disabled{cursor:not-allowed;opacity:.7}
+
+.fb{padding:18px;border-radius:12px;margin-top:20px;display:none}
+.fb.show{display:block;animation:popIn .3s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+.fb.ok{background:rgba(16,185,129,.12);border:1.5px solid rgba(16,185,129,.4);color:var(--mint)}
+.fb.no{background:rgba(230,0,35,.12);border:1.5px solid rgba(230,0,35,.4);color:var(--primary)}
+.fb-title{font-weight:700;font-size:1rem;margin-bottom:8px;font-family:var(--font-ui)}
+.fb-body{font-size:.9rem;line-height:1.5;opacity:.9}
+@keyframes popIn{from{transform:scale(0.95);opacity:0}to{transform:scale(1);opacity:1}}
+
+.next-btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;margin-top:16px;font-family:var(--font-ui);letter-spacing:.05em;display:none}
+.next-btn:hover{background:var(--primary-hover);transform:translateY(-2px)}
+.next-btn:disabled{opacity:.5;cursor:not-allowed}
+.next-btn.show{display:block;}
+
+.timer-bar-wrap{padding:0 16px 16px}
+.timer-bar{height:8px;background:var(--bg-card);border-radius:20px;overflow:hidden;border:1px solid var(--border)}
+.timer-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--gold),var(--primary));transition:width .3s linear}
+
+.lives-row{display:flex;justify-content:center;gap:8px;padding:16px;font-size:1.8rem}
+
+.match-screen{padding:16px}
+.match-hud{display:flex;justify-content:space-around;margin-bottom:20px;font-family:var(--font-mono);font-size:.75rem}
+.match-hud .hud-lbl{color:var(--text-muted);font-size:.65rem;letter-spacing:.08em}
+.match-hud .hud-val{font-size:1.1rem;font-weight:700;margin-top:4px}
+
+.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.match-col-lbl{font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);letter-spacing:.08em;margin-bottom:8px;text-align:center}
+.match-col{display:flex;flex-direction:column;gap:8px}
+.match-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:14px;font-size:.85rem;cursor:pointer;transition:all .2s;text-align:center;user-select:none;min-height:60px;display:flex;align-items:center;justify-content:center}
+.match-card:hover{border-color:var(--primary);background:var(--primary-light);transform:scale(1.02)}
+.match-card.sel{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:600}
+.match-card.ok{background:rgba(16,185,129,.15);border-color:var(--mint);color:var(--mint);pointer-events:none}
+.match-card.no{background:rgba(230,0,35,.15);border-color:var(--primary);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.result-screen{text-align:center;padding:30px 20px}
+.res-ring{width:140px;height:140px;margin:0 auto 20px;position:relative}
+.res-ring svg{width:100%;height:100%}
+.rr-bg{fill:none;stroke:var(--border2);stroke-width:8}
+.rr-fill{fill:none;stroke:var(--primary);stroke-width:8;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1s ease}
+.res-ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.res-pct{font-size:2.2rem;font-weight:800;font-family:var(--font-ui)}
+.res-pts-big{font-size:3rem;font-weight:800;color:var(--primary);font-family:var(--font-ui);margin-bottom:4px}
+.res-grade{font-size:1.3rem;font-weight:700;margin-top:12px;padding:8px 20px;border-radius:20px;display:inline-block;font-family:var(--font-ui)}
+.res-bonus{font-family:var(--font-mono);font-size:.75rem;color:var(--gold);margin-top:8px;font-weight:600}
+
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;max-width:400px;margin-left:auto;margin-right:auto}
+.stat-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.stat-v{font-size:1.8rem;font-weight:800;font-family:var(--font-ui)}
+.stat-l{font-size:.65rem;color:var(--text-muted);margin-top:4px;font-family:var(--font-mono);letter-spacing:.08em}
+
+.miss-list{margin-top:20px}
+.miss-hdr{font-family:var(--font-ui);font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase}
+.miss-item{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;text-align:left}
+.miss-q{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.miss-exp{font-size:.8rem;color:var(--text-muted);line-height:1.4}
+
+.btn-row{display:flex;gap:10px;margin-top:20px}
+.btn-pri{flex:1;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+.btn-pri:hover{background:var(--primary-hover);transform:translateY(-2px)}
+.btn-sec{flex:1;padding:14px;background:var(--bg-card);color:var(--text);border:1px solid var(--border);border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+.btn-sec:hover{background:var(--bg-card-hover)}
+
+/* ── RPG HOME ── */
+.dg-home-hero{text-align:center;padding:30px 0 20px}
+.dg-info-box{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px;font-size:.9rem;line-height:1.6;color:var(--text-muted)}
+.dg-info-box strong{color:var(--text);font-weight:700}
+
+/* ── RPG BATTLE ── */
+.rpg-screen{padding:0!important}
+.dungeon-topbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(12px)}
+.dg-back{width:32px;height:32px;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1rem;transition:all .2s}
+.dg-back:hover{background:var(--bg-card-hover)}
+.dg-title{font-family:var(--font-ui);font-size:0.9rem;font-weight:700;letter-spacing:.05em}
+.dg-wave{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:.08em}
+
+.dg-arena{padding:12px 10px}
+
+.battle-zone{background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:12px 9px;margin-bottom:20px;position:relative;min-height:165px}
+.battle-vs{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;font-weight:800;color:var(--border2);font-family:var(--font-ui);z-index:1;opacity:.3}
+
+.battle-fighters{display:flex;justify-content:space-between;align-items:flex-end;gap:7px;position:relative;z-index:2}
+
+.bf-hero, .bf-enemy{flex:1;text-align:center}
+.bf-sprite-wrap{height:75px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:6px;position:relative}
+.bf-sprite-wrap > div{
+  max-width:100%;
+  max-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.bf-sprite-wrap img{
+  max-height:75px;
+  max-width:100%;
+  width:auto;
+  object-fit:contain;
+  image-rendering:pixelated;
+}
+
+#heroSpriteEl.atk{animation:heroAttack .4s}
+#heroSpriteEl.hurt{animation:heroHurt .4s}
+#enemySpriteEl.atk{animation:enemyAttack .4s}
+#enemySpriteEl.hurt{animation:enemyHurt .4s}
+#enemySpriteEl.defeat{animation:enemyDefeat .6s forwards}
+
+@keyframes heroAttack{0%,100%{transform:translateX(0)}50%{transform:translateX(20px) scale(1.1)}}
+@keyframes heroHurt{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-4px)}50%{transform:translateX(4px)}}
+@keyframes enemyAttack{0%,100%{transform:translateX(0)}50%{transform:translateX(-20px) scale(1.1)}}
+@keyframes enemyHurt{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(4px)}50%{transform:translateX(-4px)}}
+@keyframes enemyDefeat{to{transform:translateY(20px);opacity:0;filter:blur(2px)}}
+
+.bf-name{font-family:var(--font-ui);font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--text-muted);margin-bottom:4px}
+.bf-hp-wrap{background:var(--bg);border:1px solid var(--border2);border-radius:8px;max-width:200px;margin:0 auto;padding:5px 8px}
+.bf-hp-label{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.6rem;color:var(--text-muted);margin-bottom:3px}
+.bf-hp-label span:first-child{font-weight:700}
+.bf-hp-track{height:5px;background:var(--border);border-radius:20px;overflow:hidden}
+.bf-hp-fill{height:100%;transition:width .4s ease;border-radius:20px}
+.hp-hero{background:linear-gradient(90deg,var(--mint),var(--blue))}
+.hp-enemy{background:linear-gradient(90deg,var(--primary),var(--gold))}
+
+.dmg-pop{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);font-size:1.5rem;font-weight:800;font-family:var(--font-ui);animation:dmgFloat .9s ease-out forwards;pointer-events:none;z-index:10}
+.dmg-hit{color:var(--primary)}
+.dmg-miss{color:var(--blue2)}
+@keyframes dmgFloat{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-120px) scale(1.3);opacity:0}}
+
+.enemy-info-panel{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:6px;display:flex;align-items:center;gap:6px;margin-top:8px}
+.eip-badge{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.eip-name{font-weight:700;font-size:.80rem;margin-bottom:2px;font-family:var(--font-ui)}
+.eip-flavor{font-size:.75rem;color:var(--text-muted)}
+.eip-right{margin-left:auto;text-align:right}
+.eip-lives{font-size:0.8rem;margin-bottom:4px}
+.eip-diff{font-family:var(--font-mono);font-size:.6rem;padding:2px 6px;border-radius:4px;border:1px solid;font-weight:600}
+
+.rpg-q-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.rpg-q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.rpg-q-num{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.1em}
+.rpg-q-text{font-size:1.15rem;font-weight:600;line-height:1.6;margin-bottom:20px}
+.rpg-opts{display:flex;flex-direction:column;gap:4px}
+.rpg-opt{width:100%;padding:8px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;text-align:left;cursor:pointer;font-size:.85rem;transition:all .2s;display:flex;align-items:center;gap:8px;color:var(--text)}
+.rpg-opt:hover{border-color:var(--primary);background:var(--primary-light);transform:translateX(4px)}
+.rpg-opt-k{width:24px;height:24px;border-radius:8px;background:var(--bg-card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;font-family:var(--font-mono);flex-shrink:0}
+.rpg-opt:hover .rpg-opt-k{background:var(--primary);color:#fff;border-color:var(--primary)}
+.rpg-opt.correct{background:rgba(16,185,129,.12);border-color:var(--mint);color:var(--mint);font-weight:600}
+.rpg-opt.correct .rpg-opt-k{background:var(--mint);color:#fff;border-color:var(--mint)}
+.rpg-opt.correct-chosen{background:rgba(16,185,129,.12);border-color:var(--mint);color:var(--mint);font-weight:600}
+.rpg-opt.correct-chosen .rpg-opt-k{background:var(--mint);color:#fff;border-color:var(--mint)}
+.rpg-opt.wrong{background:rgba(230,0,35,.12);border-color:var(--primary);color:var(--primary);font-weight:600}
+.rpg-opt.wrong .rpg-opt-k{background:var(--primary);color:#fff;border-color:var(--primary)}
+.rpg-opt:disabled{cursor:not-allowed;opacity:.7}
+
+.rpg-fb{padding:16px;border-radius:12px;margin-top:16px;display:none}
+.rpg-fb.show{display:block;animation:popIn .3s}
+.rpg-fb.ok{background:rgba(16,185,129,.12);border:1.5px solid rgba(16,185,129,.4);color:var(--mint)}
+.rpg-fb.no{background:rgba(230,0,35,.12);border:1.5px solid rgba(230,0,35,.4);color:var(--primary)}
+.rpg-fb-title{font-weight:700;font-size:1rem;margin-bottom:8px;font-family:var(--font-ui)}
+.rpg-fb-body{font-size:.88rem;line-height:1.5;opacity:.9}
+
+.rpg-next{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;margin-top:16px;display:none;font-family:var(--font-ui)}
+.rpg-next.show{display:block}
+.rpg-next:hover{background:var(--primary-hover)}
+
+.rpg-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.rpg-overlay.show{display:flex}
+.rpg-result-card{--rc-color:var(--mint);background:var(--bg-card);border:2px solid var(--rc-color);border-radius:20px;padding:32px;max-width:400px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:cardPop .4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+@keyframes cardPop{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.rpg-res-emoji{font-size:4rem;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 12px var(--rc-color))}
+.rpg-res-title{font-size:2rem;font-weight:800;margin-bottom:12px;font-family:var(--font-ui);color:var(--rc-color)}
+.rpg-res-msg{font-size:1rem;color:var(--text-muted);margin-bottom:24px;line-height:1.5}
+.rpg-res-btns{display:flex;flex-direction:column;gap:10px}
+.rpg-btn-ok{padding:14px;background:var(--rc-color);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+.rpg-btn-ok:hover{transform:translateY(-2px);box-shadow:0 4px 16px var(--rc-color)}
+.rpg-btn-sec{padding:12px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:10px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+.rpg-btn-sec:hover{background:var(--bg-card-hover)}
+
+.wave-banner{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.8);background:var(--bg-card);border:2px solid var(--primary);border-radius:20px;padding:32px;min-width:300px;text-align:center;box-shadow:0 20px 60px rgba(230,0,35,.4);z-index:400;opacity:0;pointer-events:none;transition:all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+.wave-banner.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.wb-icon{font-size:4rem;display:block;margin-bottom:12px;filter:drop-shadow(0 4px 12px var(--primary))}
+.wb-title{font-size:1.6rem;font-weight:800;margin-bottom:8px;font-family:var(--font-ui);color:var(--primary)}
+.wb-sub{font-size:.95rem;color:var(--text-muted)}
+
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .match-cols{grid-template-columns:1fr;gap:16px}
+  .battle-fighters{flex-direction:column;align-items:center}
+  .bf-hero, .bf-enemy{width:100%;max-width:200px}
+}
+
+/* ENEM */
+.mode-card.ling{border-color:var(--primary);}
+.mode-card.hum{border-color:var(--gold);}
+.mode-card.mat{border-color:var(--blue);}
+.mode-card.nat{border-color:var(--mint);}
+.mode-card.ling:hover{box-shadow:0 4px 20px rgba(230,0,35,0.2);}
+.mode-card.hum:hover{box-shadow:0 4px 20px rgba(245,158,11,0.2);}
+.mode-card.mat:hover{box-shadow:0 4px 20px rgba(59,130,246,0.2);}
+.mode-card.nat:hover{box-shadow:0 4px 20px rgba(16,185,129,0.2);}
+
+.enem_hud{display:flex;justify-content:space-between;padding:12px 14px;margin-bottom:10px;font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted);gap:10px}
+.enem_hud-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.enem_hud-label{font-size:.65rem;letter-spacing:.08em}
+.enem_hud-val{color:var(--text);font-weight:700;font-size:1.1rem}
+.enem_hud-val.g{color:var(--mint)}
+.enem_hud-val.r{color:var(--primary)}
+
+.quiz-opt{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-card);text-align:left;font-size:.85rem;transition:all .2s;color:var(--text);display:flex;align-items:center;gap:10px;cursor:pointer}
+.quiz-opt:hover{background:var(--bg-card-hover);transform:translateX(4px)}
+.quiz-opt.correct{border-color:var(--mint);background:rgba(16,185,129,.1);color:var(--mint)}
+.quiz-opt.wrong{border-color:var(--primary);background:rgba(230,0,35,.1);color:var(--primary)}
+
+#enemQText{font-size:.95rem;line-height:1.5;margin-bottom:12px;font-weight:600}
+#enemOpts{display:flex;flex-direction:column;gap:8px}
+#enemNextBtn{margin-top:12px;width:100%}
+</style>
+</head>
+<body>
+
+<!-- ═══════ LOADING ═══════ -->
+<div id="loadingOverlay">
+  <div class="loader-cube"></div>
+  <div class="loader-text">Carregando EnigMax…</div>
+  <div class="loader-error" id="loaderError"></div>
+</div>
+
+<!-- ═══════ TOPBAR ═══════ -->
+<div class="topbar">
+  <div class="logo-area">
+    <div class="logo-cube">
+      <img src="assets/logo.png" alt="logo" onerror="this.style.display='none';this.parentElement.textContent='🧠';this.parentElement.style.fontSize='2rem'">
+    </div>
+    <div class="app-title"><span class="e1">ENIG</span>MAX</div>
+  </div>
+  <div class="topbar-right">
+    <div class="hud-pill" id="bestPill">🏆 0</div>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+  </div>
+</div>
+
+<!-- ═══════ HOME ═══════ -->
+<div class="screen active" id="screen-home">
+  <div class="container">
+    <div class="home-hero">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <div class="hero-badge-text">QUIZ INTELIGENTE</div>
+      </div>
+      <div class="hero-title"><span class="e1">ENIG</span><span class="e2">MAX</span></div>
+      <div class="hero-sub">Enem & Conhecimentos Gerais</div>
+      <div class="home-stats">
+        <div class="stat-tag"><span class="stat-tag-val" id="qTotal">…</span> QUESTÕES</div>
+        <div class="stat-tag"><span class="stat-tag-val">EM CASO DE BUG</span> CULPE O USUÁRIO</div>
+        <div class="stat-tag"><span class="stat-tag-val">v</span> 9.1</div>
+      </div>
+    </div>
+
+    <div class="section-title">Tópicos</div>
+    <div class="topic-row" id="topicRow"></div>
+
+    <div class="section-title">Dificuldade</div>
+    <div class="diff-pills">
+      <div class="diff-pill on" data-d="facil" onclick="setDiff(this)">🟢 FÁCIL</div>
+      <div class="diff-pill on" data-d="medio" onclick="setDiff(this)">🟡 MÉDIO</div>
+      <div class="diff-pill on" data-d="dificil" onclick="setDiff(this)">🔴 DIFÍCIL</div>
+    </div>
+
+    <div class="section-title">Modo de Jogo</div>
+    <div class="mode-grid">
+      <div class="mode-card sel" data-mode="quiz" onclick="selectMode('quiz')">
+        <span class="mode-icon">🎯</span>
+        <div class="mode-name">Quiz Clássico</div>
+        <div class="mode-desc">15 questões</div>
+      </div>
+      <div class="mode-card" data-mode="timer" onclick="selectMode('timer')">
+        <span class="mode-icon">⏱️</span>
+        <div class="mode-name">Contra o Tempo</div>
+        <div class="mode-desc">20s por pergunta</div>
+      </div>
+      <div class="mode-card" data-mode="survival" onclick="selectMode('survival')">
+        <span class="mode-icon">❤️</span>
+        <div class="mode-name">Sobrevivência</div>
+        <div class="mode-desc">3 vidas</div>
+      </div>
+      <div class="mode-card" data-mode="match" onclick="selectMode('match')">
+        <span class="mode-icon">🧩</span>
+        <div class="mode-name">Combinar</div>
+        <div class="mode-desc">8 pares</div>
+      </div>
+    </div>
+
+    <button class="start-btn" onclick="startSession()">
+      <span>▶</span> INICIAR SESSÃO
+    </button>
+  </div>
+</div>
+
+<!-- ═══════ QUIZ ═══════ -->
+<div class="screen" id="screen-quiz">
+  <div class="game-header">
+    <button class="back-btn" onclick="confirmExit()">←</button>
+    <div style="font-family:var(--font-ui);font-size:1rem;font-weight:700">QUIZ</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="hud">
+    <div class="hud-item"><div class="hud-label">QUESTÃO</div><div class="hud-val" id="qNum">1/15</div></div>
+    <div class="hud-item"><div class="hud-label">PONTOS</div><div class="hud-val" id="pts">0</div></div>
+    <div class="hud-item"><div class="hud-label">ACERTOS</div><div class="hud-val g" id="correct">0</div></div>
+  </div>
+  <div class="quiz-container">
+    <div class="q-card">
+      <div class="q-meta">
+        <span id="topicChip"></span>
+        <span class="q-num" id="qNumText">QUESTÃO 1</span>
+      </div>
+      <div class="q-text" id="qText">Carregando...</div>
+      <div class="opts" id="opts"></div>
+      <div class="fb" id="fb">
+        <div class="fb-title" id="fbTitle"></div>
+        <div class="fb-body" id="fbBody"></div>
+      </div>
+      <button class="next-btn" id="nextBtn">PRÓXIMA QUESTÃO →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TIMER ═══════ -->
+<div class="screen" id="screen-timer">
+  <div class="game-header">
+    <button class="back-btn" onclick="confirmExit()">←</button>
+    <div style="font-family:var(--font-ui);font-size:1rem;font-weight:700">CONTRA O TEMPO</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="timer-bar-wrap">
+    <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+  </div>
+  <div class="hud">
+    <div class="hud-item"><div class="hud-label">QUESTÃO</div><div class="hud-val" id="tQNum">1/15</div></div>
+    <div class="hud-item"><div class="hud-label">TEMPO</div><div class="hud-val" id="tTime">20s</div></div>
+    <div class="hud-item"><div class="hud-label">PONTOS</div><div class="hud-val" id="tPts">0</div></div>
+  </div>
+  <div class="quiz-container">
+    <div class="q-card">
+      <div class="q-meta">
+        <span id="tTopicChip"></span>
+        <span class="q-num" id="tQNumText">QUESTÃO 1</span>
+      </div>
+      <div class="q-text" id="tQText">Carregando...</div>
+      <div class="opts" id="tOpts"></div>
+      <div class="fb" id="tFb">
+        <div class="fb-title" id="tFbTitle"></div>
+        <div class="fb-body" id="tFbBody"></div>
+      </div>
+      <button class="next-btn" id="tNextBtn">PRÓXIMA QUESTÃO →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SURVIVAL ═══════ -->
+<div class="screen" id="screen-survival">
+  <div class="game-header">
+    <button class="back-btn" onclick="confirmExit()">←</button>
+    <div style="font-family:var(--font-ui);font-size:1rem;font-weight:700">SOBREVIVÊNCIA</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="lives-row" id="livesRow">❤️❤️❤️</div>
+  <div class="hud">
+    <div class="hud-item"><div class="hud-label">QUESTÃO</div><div class="hud-val" id="sQNum">1</div></div>
+    <div class="hud-item"><div class="hud-label">PONTOS</div><div class="hud-val" id="sPts">0</div></div>
+    <div class="hud-item"><div class="hud-label">STREAK</div><div class="hud-val g" id="sStreak">0</div></div>
+  </div>
+  <div class="quiz-container">
+    <div class="q-card">
+      <div class="q-meta">
+        <span id="sTopicChip"></span>
+        <span class="q-num" id="sQNumText">QUESTÃO 1</span>
+      </div>
+      <div class="q-text" id="sQText">Carregando...</div>
+      <div class="opts" id="sOpts"></div>
+      <div class="fb" id="sFb">
+        <div class="fb-title" id="sFbTitle"></div>
+        <div class="fb-body" id="sFbBody"></div>
+      </div>
+      <button class="next-btn" id="sNextBtn">PRÓXIMA QUESTÃO →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ MATCH ═══════ -->
+<div class="screen" id="screen-match">
+  <div class="game-header">
+    <button class="back-btn" onclick="confirmExit()">←</button>
+    <div style="font-family:var(--font-ui);font-size:1rem;font-weight:700">COMBINAR</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="match-screen">
+    <div class="match-hud">
+      <div><div class="hud-lbl">PARES</div><div class="hud-val g" id="mPairs">0/8</div></div>
+      <div><div class="hud-lbl">PONTOS</div><div class="hud-val" id="mPts">0</div></div>
+      <div><div class="hud-lbl">ERROS</div><div class="hud-val r" id="mErrs">0</div></div>
+    </div>
+    <div class="match-cols">
+      <div><div class="match-col-lbl">CONCEITO</div><div class="match-col" id="mLeft"></div></div>
+      <div><div class="match-col-lbl">DEFINIÇÃO</div><div class="match-col" id="mRight"></div></div>
+    </div>
+    <div class="fb" id="mFb">
+      <div class="fb-title" id="mFbT"></div>
+      <div class="fb-body" id="mFbB"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ RESULT ═══════ -->
+<div class="screen" id="screen-result">
+  <div class="result-screen">
+    <div class="res-ring">
+      <svg viewBox="0 0 120 120" width="120" height="120">
+        <circle class="rr-bg" cx="60" cy="60" r="52"/>
+        <circle class="rr-fill" id="rrFill" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327"/>
+      </svg>
+      <div class="res-ring-num">
+        <div class="res-pct" id="resPct">0%</div>
+        <div style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);letter-spacing:.08em">ACERTO</div>
+      </div>
+    </div>
+    <div class="res-pts-big" id="rPts">0</div>
+    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);letter-spacing:.1em;margin-bottom:6px">PONTOS</div>
+    <div class="res-grade" id="rGrade"></div>
+    <div class="res-bonus" id="resBonusMsg"></div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-v" id="sAc">0</div><div class="stat-l">ACERTOS</div></div>
+      <div class="stat-box"><div class="stat-v" id="sEr">0</div><div class="stat-l">ERROS</div></div>
+      <div class="stat-box"><div class="stat-v" id="sBst">—</div><div class="stat-l">RECORDE</div></div>
+    </div>
+    <div class="miss-list" id="missList" style="display:none">
+      <div class="miss-hdr">REVISE ESSES PONTOS</div>
+      <div id="missBody"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-sec" id="btnHome">🏠 INÍCIO</button>
+      <button class="btn-pri" id="btnRetry">🔄 REPETIR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ ENEM HOME ═══════ -->
+<div id="screen-enem" class="screen">
+  <div class="dg-home-hero">
+    <div style="font-size:4rem;margin-bottom:12px;filter:drop-shadow(0 4px 20px rgba(230,0,35,.5))">🎓</div>
+    <div style="font-family:var(--font-ui);font-size:1.8rem;font-weight:700;letter-spacing:.05em;margin-bottom:6px">MODO ENEM</div>
+    <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.08em">ÁREA DE TREINO BASEADA NO ENEM</div>
+  </div>
+  <div class="enem-menu-wrap">
+    <div class="mode-grid" style="padding:0 16px">
+      <div class="mode-card ling" onclick="startEnem('ling')">
+        <span class="mode-icon">📕</span>
+        <div class="mode-name">Linguagens</div>
+        <div class="mode-desc">Português, Inglês e Artes</div>
+      </div>
+      <div class="mode-card hum" onclick="startEnem('hum')">
+        <span class="mode-icon">📜</span>
+        <div class="mode-name">Ciências Humanas</div>
+        <div class="mode-desc">História, Geografia, Filosofia</div>
+      </div>
+      <div class="mode-card mat" onclick="startEnem('mat')">
+        <span class="mode-icon">🔢</span>
+        <div class="mode-name">Matemática</div>
+        <div class="mode-desc">Raciocínio lógico e cálculos</div>
+      </div>
+      <div class="mode-card nat" onclick="startEnem('nat')">
+        <span class="mode-icon">🧪</span>
+        <div class="mode-name">Ciências da Natureza</div>
+        <div class="mode-desc">Bio, Física e Química</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ ENEM GAME ═══════ -->
+<div id="screen-enem-game" class="screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="showScr('screen-enem')">←</button>
+    <div style="font-family:var(--font-ui);font-size:1rem;font-weight:700">ENEM</div>
+    <div style="width:40px"></div>
+  </div>
+  <div class="enem_hud">
+    <div class="enem_hud-item">
+      <div class="enem_hud-label">QUESTÃO</div>
+      <div class="enem_hud-val" id="enemHudQ">1/5</div>
+    </div>
+    <div class="enem_hud-item">
+      <div class="enem_hud-label">PONTOS</div>
+      <div class="enem_hud-val" id="enemHudPts">0</div>
+    </div>
+    <div class="enem_hud-item">
+      <div class="enem_hud-label">ACERTOS</div>
+      <div class="enem_hud-val g" id="enemHudCorrect">0</div>
+    </div>
+  </div>
+  <div class="quiz-container">
+    <div class="q-card">
+      <div class="q-meta">
+        <span id="enemTopicChip"></span>
+        <span class="q-num" id="enemQNumText">QUESTÃO 1</span>
+      </div>
+      <div class="q-text" id="enemQText"></div>
+      <div class="opts" id="enemOpts"></div>
+      <div class="fb" id="enemFb">
+        <div class="fb-title" id="enemFbTitle"></div>
+        <div class="fb-body" id="enemFbBody"></div>
+      </div>
+      <button class="next-btn" id="enemNextBtn">PRÓXIMA QUESTÃO →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ ENEM RESULT ═══════ -->
+<div class="screen" id="screen-enem-result">
+  <div class="result-screen">
+    <div class="res-ring">
+      <svg viewBox="0 0 120 120" width="120" height="120">
+        <circle class="rr-bg" cx="60" cy="60" r="52"/>
+        <circle class="rr-fill" id="enem_rrFill" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327"/>
+      </svg>
+      <div class="res-ring-num">
+        <div class="res-pct" id="enem_resPct">0%</div>
+        <div style="font-family:var(--font-mono);font-size:.5rem;color:var(--text-muted);letter-spacing:.08em">ACERTO</div>
+      </div>
+    </div>
+    <div class="res-pts-big" id="enem_rPts">0</div>
+    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);letter-spacing:.1em;margin-bottom:6px">PONTOS</div>
+    <div class="res-grade" id="enem_rGrade"></div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-v" id="enem_sAc">0</div><div class="stat-l">ACERTOS</div></div>
+      <div class="stat-box"><div class="stat-v" id="enem_sEr">0</div><div class="stat-l">ERROS</div></div>
+      <div class="stat-box"><div class="stat-v" id="enem_sBst">—</div><div class="stat-l">RECORDE</div></div>
+    </div>
+    <div class="miss-list" id="enem_missList" style="display:none">
+      <div class="miss-hdr">REVISE ESSES PONTOS</div>
+      <div id="enem_missBody"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-sec" id="enem_btnHome">🎓 MENU ENEM</button>
+      <button class="btn-pri" id="enem_btnRetry">🔄 REPETIR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ RPG HOME ═══════ -->
+<div class="screen" id="screen-rpg-home">
+  <div class="container">
+    <div class="dg-home-hero">
+      <div style="font-size:4rem;margin-bottom:12px;filter:drop-shadow(0 4px 20px rgba(230,0,35,.5))">⚔️</div>
+      <div style="font-family:var(--font-ui);font-size:1.8rem;font-weight:700;letter-spacing:.05em;margin-bottom:6px">MASMORRA ENIGMAX</div>
+      <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.08em">A INTELIÊNCIA É SUA ARMA · PENSE OU PEREÇA</div>
+    </div>
+    <div class="dg-info-box">
+      ⚔️ Acerte e ataque o inimigo. Erre e leve dano. <strong>3 vidas por batalha.</strong> As questões ficam mais difíceis a cada inimigo vencido. As respostas <strong>nunca se repetem</strong> na mesma masmorra.
+    </div>
+    <button class="start-btn" onclick="startRPG()">⚔️ ENTRAR NA MASMORRA</button>
+    <button class="sec-btn" onclick="showScr('screen-home')">← VOLTAR AO QUIZ</button>
+  </div>
+</div>
+
+<!-- ═══════ RPG BATTLE ═══════ -->
+<div class="screen rpg-screen" id="screen-rpg-battle">
+  <div class="dungeon-topbar">
+    <button class="dg-back" onclick="confirmRPGExit()">←</button>
+    <div class="dg-title" id="dg-battle-title">BATALHA 1/4</div>
+    <div class="dg-wave" id="dg-wave-label">vs GOBLIN</div>
+  </div>
+  <div class="dg-arena">
+    <div class="battle-zone" id="battleZone">
+      <div class="battle-vs">VS</div>
+      <div class="battle-fighters">
+        <div class="bf-hero">
+          <div class="bf-sprite-wrap">
+            <div id="heroSpriteEl"></div>
+          </div>
+          <div class="bf-name">HERÓI</div>
+          <div class="bf-hp-wrap">
+            <div class="bf-hp-label"><span>HP</span><span id="heroHpTxt">3/3</span></div>
+            <div class="bf-hp-track"><div class="bf-hp-fill hp-hero" id="heroHpFill" style="width:100%"></div></div>
+          </div>
+        </div>
+
+        <div class="bf-enemy">
+          <div class="bf-sprite-wrap">
+            <div id="enemySpriteEl"></div>
+          </div>
+          <div class="bf-name" id="enemyNameLabel">GOBLIN</div>
+          <div class="bf-hp-wrap">
+            <div class="bf-hp-label"><span>HP</span><span id="enemyHpTxt">3/3</span></div>
+            <div class="bf-hp-track"><div class="bf-hp-fill hp-enemy" id="enemyHpFill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="enemy-info-panel">
+        <div class="eip-badge" id="eipBadge">👹</div>
+        <div>
+          <div class="eip-name" id="eipName">Goblin das Sombras</div>
+          <div class="eip-flavor" id="eipFlavor">Pequeno e traiçoeiro...</div>
+        </div>
+        <div class="eip-right">
+          <div class="eip-lives" id="eipLives">❤️❤️❤️</div>
+          <div class="eip-diff" id="eipDiff" style="color:var(--mint);border-color:rgba(16,185,129,.3)">FÁCIL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rpg-q-card">
+      <div class="rpg-q-meta">
+        <span id="rpgTopicChip"></span>
+        <span class="rpg-q-num" id="rpgQNum">Q 1</span>
+      </div>
+      <div class="rpg-q-text" id="rpgQText">Carregando...</div>
+      <div class="rpg-opts" id="rpgOpts"></div>
+      <div class="rpg-fb" id="rpgFb">
+        <div class="rpg-fb-title" id="rpgFbTitle"></div>
+        <div class="rpg-fb-body" id="rpgFbBody"></div>
+      </div>
+      <button class="rpg-next" id="rpgNextBtn">CONTINUAR →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RPG Overlay -->
+<div class="rpg-overlay" id="rpgOverlay">
+  <div class="rpg-result-card" id="rpgResultCard">
+    <span class="rpg-res-emoji" id="rpgResEmoji">⚔️</span>
+    <div class="rpg-res-title" id="rpgResTitle">Vitória!</div>
+    <div class="rpg-res-msg" id="rpgResMsg">...</div>
+    <div class="rpg-res-btns">
+      <button class="rpg-btn-ok" id="rpgResBtnOk">Continuar</button>
+      <button class="rpg-btn-sec" onclick="rpgGoHome()">Voltar ao início</button>
+    </div>
+  </div>
+</div>
+
+<!-- Wave Banner -->
+<div class="wave-banner" id="waveBanner">
+  <span class="wb-icon" id="wbIcon">⚔️</span>
+  <div class="wb-title" id="wbTitle">Batalha 2</div>
+  <div class="wb-sub" id="wbSub">Um novo inimigo surge...</div>
+</div>
+
+<!-- ═══════ BOTTOM NAV ═══════ -->
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="showScr('screen-home')">
+    <div class="nav-icon">🏠</div>
+    <div>Início</div>
+  </div>
+  <div class="nav-item" onclick="showScr('screen-rpg-home')">
+    <div class="nav-icon">⚔️</div>
+    <div>Masmorra</div>
+  </div>
+  <div class="nav-item" onclick="showScr('screen-enem')">
+    <div class="nav-icon">🎓</div>
+    <div>Modo Enem</div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   DADOS EXTERNOS (carregados de /data)
+═══════════════════════════════════════════ */
+let BANCO = [];              // questões do banco.json
+let HERO_FRAMES = [];        // HTML <img> do herói
+let ENEMY_SPRITES = {};      // HTML <img> dos inimigos
+
+async function carregarDados() {
+  const [bancoResp, spritesResp] = await Promise.all([
+    fetch('data/banco.json'),
+    fetch('data/sprites.json')
+  ]);
+
+  if (!bancoResp.ok) throw new Error('Falha ao carregar data/banco.json');
+  if (!spritesResp.ok) throw new Error('Falha ao carregar data/sprites.json');
+
+  BANCO = await bancoResp.json();
+  const sprites = await spritesResp.json();
+
+  // Monta HERO_FRAMES
+  HERO_FRAMES = [];
+  if (sprites.hero) {
+    if (sprites.hero.idle) HERO_FRAMES.push(`<img src="${sprites.hero.idle}" alt="herói">`);
+    (sprites.hero.atk || []).forEach(src => HERO_FRAMES.push(`<img src="${src}" alt="ataque">`));
+  }
+
+  // Monta ENEMY_SPRITES
+  ENEMY_SPRITES = {};
+  for (const [id, obj] of Object.entries(sprites.enemies || {})) {
+    const frames = [];
+    if (obj.idle) frames.push(`<img src="${obj.idle}" alt="${id}">`);
+    if (obj.atk)  frames.push(`<img src="${obj.atk}" alt="${id} atk">`);
+    ENEMY_SPRITES[id] = frames;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   CHIPS
+═══════════════════════════════════════════ */
+const CHIP_MAP = {
+  mat:['ch-mat','📐'], port:['ch-port','📝'], hist:['ch-hist','⏳'],
+  geo:['ch-geo','🌍'], fil:['ch-fil','🧠'], soc:['ch-soc','👥'],
+  fis:['ch-fis','⚡'], qui:['ch-qui','🧪'], bio:['ch-bio','🧬']
+};
+
+/* ═══════════════════════════════════════════
+   ESTADO GLOBAL
+═══════════════════════════════════════════ */
+let selectedTopics=new Set(),selectedDiffs=new Set(['facil','medio','dificil']),selectedMode='quiz';
+let questions=[],qIdx=0,pts=0,correct=0,wrong=0,answered=false,shuffled=[],missed=[];
+let timerSec=20,timerInt=null;
+let lives=3,streak=0;
+let matchLeft=[],matchRight=[],matchSel=null,matchPairs=0,matchErrs=0;
+let rpgEnemyIdx=0,rpgQuestions=[],rpgQIdx=0,rpgAnswered=false,rpgShuffled=[],rpgHeroHp=3,rpgEnemyHp=3,rpgEnemyMaxHp=3,rpgUsedIds=new Set(),rpgTotalCorrect=0,rpgTotalWrong=0;
+let enemQuestions=[],enemIdx=0,enemScore=0,enemMissed=[],lastArea=null;
+
+/* ═══════════════════════════════════════════
+   TEMA
+═══════════════════════════════════════════ */
+function toggleTheme(){
+  const html=document.documentElement;
+  const current=html.getAttribute('data-theme');
+  const next=current==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  document.getElementById('themeBtn').textContent=next==='dark'?'🌙':'☀️';
+  localStorage.setItem('enigmax-theme',next);
+}
+
+/* ═══════════════════════════════════════════
+   NAVEGAÇÃO
+═══════════════════════════════════════════ */
+function showScr(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(id==='screen-home')document.querySelectorAll('.nav-item')[0].classList.add('active');
+  if(id==='screen-rpg-home'||id==='screen-rpg-battle')document.querySelectorAll('.nav-item')[1].classList.add('active');
+  if(id==='screen-enem')document.querySelectorAll('.nav-item')[2].classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ═══════════════════════════════════════════
+   TÓPICOS & DIFFICULDADE
+═══════════════════════════════════════════ */
+function buildTopicRow(){
+  const topics={mat:'📐 Matemática',port:'📝 Português',hist:'⏳ História',geo:'🌍 Geografia',fil:'🧠 Filosofia',soc:'👥 Sociologia',fis:'⚡ Física',qui:'🧪 Química',bio:'🧬 Biologia'};
+  const row=document.getElementById('topicRow');
+  row.innerHTML='';
+  for(let k in topics){
+    const pill=document.createElement('div');
+    pill.className='topic-pill';
+    pill.textContent=topics[k];
+    pill.dataset.t=k;
+    pill.addEventListener('click',()=>{
+      if(selectedTopics.has(k)){selectedTopics.delete(k);pill.classList.remove('on');}
+      else{selectedTopics.add(k);pill.classList.add('on');}
+    });
+    row.appendChild(pill);
+  }
+  document.getElementById('qTotal').textContent=BANCO.length;
+}
+
+function setDiff(el){
+  const d=el.dataset.d;
+  if(selectedDiffs.has(d)){selectedDiffs.delete(d);el.classList.remove('on');}
+  else{selectedDiffs.add(d);el.classList.add('on');}
+}
+
+function selectMode(m){
+  selectedMode=m;
+  document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelector(`.mode-card[data-mode="${m}"]`).classList.add('sel');
+}
+
+/* ═══════════════════════════════════════════
+   INICIAR SESSÃO
+═══════════════════════════════════════════ */
+function startSession(){
+  let pool=BANCO.filter(q=>(selectedTopics.size===0||selectedTopics.has(q.topic))&&selectedDiffs.has(q.lvl));
+  if(pool.length===0){alert('Selecione pelo menos um tópico e uma dificuldade!');return;}
+  questions=shuffle(pool);
+  if(selectedMode==='quiz'){
+    questions=questions.slice(0,15);qIdx=0;pts=0;correct=0;wrong=0;answered=false;missed=[];
+    shuffled=questions.map(q=>shuffle([0,1,2,3]).map(i=>({text:q.options[i],origIdx:i})));
+    showScr('screen-quiz');loadQ();
+  }else if(selectedMode==='timer'){
+    questions=questions.slice(0,15);qIdx=0;pts=0;correct=0;wrong=0;answered=false;missed=[];timerSec=20;
+    shuffled=questions.map(q=>shuffle([0,1,2,3]).map(i=>({text:q.options[i],origIdx:i})));
+    showScr('screen-timer');loadTimerQ();
+  }else if(selectedMode==='survival'){
+    qIdx=0;pts=0;correct=0;wrong=0;answered=false;lives=3;streak=0;missed=[];
+    shuffled=questions.map(q=>shuffle([0,1,2,3]).map(i=>({text:q.options[i],origIdx:i})));
+    showScr('screen-survival');loadSurvivalQ();
+  }else if(selectedMode==='match'){
+    questions=questions.slice(0,8);matchLeft=[];matchRight=[];matchSel=null;matchPairs=0;matchErrs=0;pts=0;
+    questions.forEach(q=>{matchLeft.push({text:q.text,id:q.text});matchRight.push({text:q.options[q.answerIdx],id:q.text});});
+    matchLeft=shuffle(matchLeft);matchRight=shuffle(matchRight);
+    showScr('screen-match');loadMatch();
+  }
+}
+
+/* ═══════════════════════════════════════════
+   QUIZ CLÁSSICO
+═══════════════════════════════════════════ */
+function loadQ(){
+  if(qIdx>=questions.length){showResult();return;}
+  const q=questions[qIdx];
+  answered=false;
+  const map=CHIP_MAP[q.topic]||['ch-geo','🌍'];
+  document.getElementById('topicChip').innerHTML=`<span class="chip ${map[0]}">${map[1]}</span>`;
+  document.getElementById('qNumText').textContent=`QUESTÃO ${qIdx+1}`;
+  document.getElementById('qNum').textContent=`${qIdx+1}/${questions.length}`;
+  document.getElementById('pts').textContent=pts;
+  document.getElementById('correct').textContent=correct;
+  document.getElementById('qText').textContent=q.text;
+  const keys=['A','B','C','D'],opts=shuffled[qIdx];
+  const optsEl=document.getElementById('opts');optsEl.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');btn.className='opt';btn.dataset.oidx=opt.origIdx;
+    btn.innerHTML=`<span class="opt-k">${keys[i]}</span>${esc(opt.text)}`;
+    btn.addEventListener('click',()=>answerQ(btn));optsEl.appendChild(btn);
+  });
+  document.getElementById('fb').className='fb';
+  document.getElementById('nextBtn').style.display='none';
+}
+
+function answerQ(btn){
+  if(answered)return;answered=true;
+  const chosen=parseInt(btn.dataset.oidx,10),q=questions[qIdx],ok=chosen===q.answerIdx;
+  btn.classList.add(ok?'correct-chosen':'wrong');
+  document.querySelectorAll('#opts .opt').forEach(o=>o.disabled=true);
+  if(!ok){document.querySelectorAll('#opts .opt').forEach(o=>{if(parseInt(o.dataset.oidx,10)===q.answerIdx)o.classList.add('correct');});}
+  if(ok){correct++;pts+=10;}else{wrong++;missed.push(q);}
+  showFb(ok,q.explain);
+  document.getElementById('nextBtn').style.display='block';
+}
+
+document.getElementById('nextBtn').addEventListener('click',()=>{qIdx++;loadQ();});
+
+function showFb(ok,explain){
+  const fb=document.getElementById('fb');fb.className='fb show '+(ok?'ok':'no');
+  document.getElementById('fbTitle').textContent=ok?'✅ CORRETO!':'❌ ERRADO!';
+  document.getElementById('fbBody').textContent=explain;
+}
+
+function confirmExit(){if(confirm('Sair da sessão?'))showScr('screen-home');}
+
+/* ═══════════════════════════════════════════
+   TIMER MODE
+═══════════════════════════════════════════ */
+function loadTimerQ(){
+  if(qIdx>=questions.length){showResult();return;}
+  const q=questions[qIdx];
+  answered=false;timerSec=20;
+  const map=CHIP_MAP[q.topic]||['ch-geo','🌍'];
+  document.getElementById('tTopicChip').innerHTML=`<span class="chip ${map[0]}">${map[1]}</span>`;
+  document.getElementById('tQNumText').textContent=`QUESTÃO ${qIdx+1}`;
+  document.getElementById('tQNum').textContent=`${qIdx+1}/${questions.length}`;
+  document.getElementById('tPts').textContent=pts;
+  document.getElementById('tQText').textContent=q.text;
+  const keys=['A','B','C','D'],opts=shuffled[qIdx];
+  const optsEl=document.getElementById('tOpts');optsEl.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');btn.className='opt';btn.dataset.oidx=opt.origIdx;
+    btn.innerHTML=`<span class="opt-k">${keys[i]}</span>${esc(opt.text)}`;
+    btn.addEventListener('click',()=>answerTimerQ(btn));optsEl.appendChild(btn);
+  });
+  document.getElementById('tFb').className='fb';
+  document.getElementById('tNextBtn').style.display='none';
+  document.getElementById('tTime').textContent='20s';
+  document.getElementById('timerFill').style.width='100%';
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInt);
+  timerInt=setInterval(()=>{
+    timerSec--;
+    document.getElementById('tTime').textContent=timerSec+'s';
+    document.getElementById('timerFill').style.width=(timerSec/20*100)+'%';
+    if(timerSec<=0){clearInterval(timerInt);if(!answered)timeUp();}
+  },1000);
+}
+
+function timeUp(){
+  answered=true;wrong++;missed.push(questions[qIdx]);
+  clearInterval(timerInt);
+  const q=questions[qIdx];
+  document.querySelectorAll('#tOpts .opt').forEach(o=>{o.disabled=true;if(parseInt(o.dataset.oidx,10)===q.answerIdx)o.classList.add('correct');});
+  const fb=document.getElementById('tFb');fb.className='fb show no';
+  document.getElementById('tFbTitle').textContent='⏰ TEMPO ESGOTADO!';
+  document.getElementById('tFbBody').textContent=q.explain;
+  document.getElementById('tNextBtn').style.display='block';
+}
+
+function answerTimerQ(btn){
+  if(answered)return;answered=true;clearInterval(timerInt);
+  const chosen=parseInt(btn.dataset.oidx,10),q=questions[qIdx],ok=chosen===q.answerIdx;
+  btn.classList.add(ok?'correct-chosen':'wrong');
+  document.querySelectorAll('#tOpts .opt').forEach(o=>o.disabled=true);
+  if(!ok){document.querySelectorAll('#tOpts .opt').forEach(o=>{if(parseInt(o.dataset.oidx,10)===q.answerIdx)o.classList.add('correct');});}
+  if(ok){correct++;pts+=10+(timerSec*2);}else{wrong++;missed.push(q);}
+  const fb=document.getElementById('tFb');fb.className='fb show '+(ok?'ok':'no');
+  document.getElementById('tFbTitle').textContent=ok?'✅ CORRETO!':'❌ ERRADO!';
+  document.getElementById('tFbBody').textContent=q.explain;
+  document.getElementById('tNextBtn').style.display='block';
+}
+
+document.getElementById('tNextBtn').addEventListener('click',()=>{qIdx++;loadTimerQ();});
+
+/* ═══════════════════════════════════════════
+   SURVIVAL MODE
+═══════════════════════════════════════════ */
+function loadSurvivalQ(){
+  if(lives<=0){showResult();return;}
+  if(qIdx>=questions.length){qIdx=0;shuffled=questions.map(q=>shuffle([0,1,2,3]).map(i=>({text:q.options[i],origIdx:i})));}
+  const q=questions[qIdx];
+  answered=false;
+  const map=CHIP_MAP[q.topic]||['ch-geo','🌍'];
+  document.getElementById('sTopicChip').innerHTML=`<span class="chip ${map[0]}">${map[1]}</span>`;
+  document.getElementById('sQNumText').textContent=`QUESTÃO ${qIdx+1}`;
+  document.getElementById('sQNum').textContent=qIdx+1;
+  document.getElementById('sPts').textContent=pts;
+  document.getElementById('sStreak').textContent=streak;
+  document.getElementById('sQText').textContent=q.text;
+  const keys=['A','B','C','D'],opts=shuffled[qIdx];
+  const optsEl=document.getElementById('sOpts');optsEl.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');btn.className='opt';btn.dataset.oidx=opt.origIdx;
+    btn.innerHTML=`<span class="opt-k">${keys[i]}</span>${esc(opt.text)}`;
+    btn.addEventListener('click',()=>answerSurvivalQ(btn));optsEl.appendChild(btn);
+  });
+  document.getElementById('sFb').className='fb';
+  document.getElementById('sNextBtn').style.display='none';
+  document.getElementById('livesRow').textContent='❤️'.repeat(lives)+'🖤'.repeat(3-lives);
+}
+
+function answerSurvivalQ(btn){
+  if(answered)return;answered=true;
+  const chosen=parseInt(btn.dataset.oidx,10),q=questions[qIdx],ok=chosen===q.answerIdx;
+  btn.classList.add(ok?'correct-chosen':'wrong');
+  document.querySelectorAll('#sOpts .opt').forEach(o=>o.disabled=true);
+  if(!ok){document.querySelectorAll('#sOpts .opt').forEach(o=>{if(parseInt(o.dataset.oidx,10)===q.answerIdx)o.classList.add('correct');});}
+  if(ok){correct++;streak++;pts+=10+streak*2;}else{wrong++;streak=0;lives--;missed.push(q);}
+  const fb=document.getElementById('sFb');fb.className='fb show '+(ok?'ok':'no');
+  document.getElementById('sFbTitle').textContent=ok?'✅ CORRETO!':'❌ ERRADO!';
+  document.getElementById('sFbBody').textContent=q.explain;
+  document.getElementById('livesRow').textContent='❤️'.repeat(lives)+'🖤'.repeat(3-lives);
+  if(lives<=0){setTimeout(()=>showResult(),1200);return;}
+  document.getElementById('sNextBtn').style.display='block';
+}
+
+document.getElementById('sNextBtn').addEventListener('click',()=>{qIdx++;loadSurvivalQ();});
+
+/* ═══════════════════════════════════════════
+   MATCH MODE
+═══════════════════════════════════════════ */
+function loadMatch(){
+  document.getElementById('mPairs').textContent=`${matchPairs}/8`;
+  document.getElementById('mPts').textContent=pts;
+  document.getElementById('mErrs').textContent=matchErrs;
+  const leftEl=document.getElementById('mLeft'),rightEl=document.getElementById('mRight');
+  leftEl.innerHTML='';rightEl.innerHTML='';
+  matchLeft.forEach((item)=>{
+    const card=document.createElement('div');card.className='match-card';card.textContent=item.text;card.dataset.id=item.id;card.dataset.side='L';
+    card.addEventListener('click',()=>selectMatch(card));leftEl.appendChild(card);
+  });
+  matchRight.forEach((item)=>{
+    const card=document.createElement('div');card.className='match-card';card.textContent=item.text;card.dataset.id=item.id;card.dataset.side='R';
+    card.addEventListener('click',()=>selectMatch(card));rightEl.appendChild(card);
+  });
+}
+
+function selectMatch(card){
+  if(card.classList.contains('ok'))return;
+  if(!matchSel){matchSel=card;card.classList.add('sel');return;}
+  if(matchSel===card){matchSel.classList.remove('sel');matchSel=null;return;}
+  if(matchSel.dataset.side===card.dataset.side){matchSel.classList.remove('sel');matchSel=card;card.classList.add('sel');return;}
+  const id1=matchSel.dataset.id,id2=card.dataset.id;
+  if(id1===id2){
+    matchSel.classList.remove('sel');matchSel.classList.add('ok');card.classList.add('ok');
+    matchPairs++;pts+=20;matchSel=null;
+    document.getElementById('mPairs').textContent=`${matchPairs}/8`;
+    document.getElementById('mPts').textContent=pts;
+    matchLeft=matchLeft.filter(x=>x.id!==id1);matchRight=matchRight.filter(x=>x.id!==id1);
+    if(matchPairs>=8){setTimeout(()=>showResult(),800);}
+  }else{
+    matchSel.classList.remove('sel');card.classList.add('no');matchSel=null;matchErrs++;
+    document.getElementById('mErrs').textContent=matchErrs;
+    setTimeout(()=>card.classList.remove('no'),600);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RESULTADO
+═══════════════════════════════════════════ */
+function showResult(){
+  clearInterval(timerInt);
+  const total=questions.length;
+  const pct=total>0?Math.round(correct/total*100):0;
+  document.getElementById('resPct').textContent=pct+'%';
+  document.getElementById('rPts').textContent=pts;
+  document.getElementById('sAc').textContent=correct;
+  document.getElementById('sEr').textContent=wrong;
+  const circ=document.getElementById('rrFill');
+  const off=327-(327*pct/100);
+  setTimeout(()=>circ.style.strokeDashoffset=off,100);
+  let grade='',gradeColor='';
+  if(pct>=90){grade='🏆 EXCEPCIONAL';gradeColor='var(--gold)';}
+  else if(pct>=75){grade='⭐ EXCELENTE';gradeColor='var(--mint)';}
+  else if(pct>=60){grade='✅ BOM';gradeColor='var(--blue)';}
+  else if(pct>=40){grade='📈 REGULAR';gradeColor='var(--text-muted)';}
+  else{grade='📉 PRECISA REVISAR';gradeColor='var(--primary)';}
+  const gradeEl=document.getElementById('rGrade');
+  gradeEl.textContent=grade;
+  gradeEl.style.color=gradeColor;
+  gradeEl.style.borderColor=gradeColor;
+  gradeEl.style.background=gradeColor.replace('var(','rgba(').replace(')',',0.1)');
+  let bonus='';
+  if(selectedMode==='survival'&&streak>=5)bonus='🔥 SEQUÊNCIA DE '+streak+'!';
+  if(selectedMode==='match'&&matchErrs===0)bonus='🎯 SEM ERROS! PERFEITO!';
+  document.getElementById('resBonusMsg').textContent=bonus;
+  const best=loadBest();
+  if(pts>best){saveBest(pts);document.getElementById('sBst').textContent=pts;document.getElementById('resBonusMsg').textContent='🎉 NOVO RECORDE! '+pts+' pontos';}
+  else{document.getElementById('sBst').textContent=best;}
+  if(missed.length>0){
+    document.getElementById('missList').style.display='block';
+    const missBody=document.getElementById('missBody');missBody.innerHTML='';
+    missed.forEach(q=>{
+      const div=document.createElement('div');div.className='miss-item';
+      div.innerHTML=`<div class="miss-q">${esc(q.text)}</div><div class="miss-exp">${esc(q.explain)}</div>`;
+      missBody.appendChild(div);
+    });
+  }else{document.getElementById('missList').style.display='none';}
+  showScr('screen-result');
+}
+
+document.getElementById('btnHome').addEventListener('click',()=>showScr('screen-home'));
+document.getElementById('btnRetry').addEventListener('click',()=>startSession());
+
+function saveBest(val){localStorage.setItem('enigmax-best',val);}
+function loadBest(){const b=localStorage.getItem('enigmax-best')||0;document.getElementById('bestPill').textContent='🏆 '+b;return parseInt(b,10);}
+
+/* ═══════════════════════════════════════════
+   ENEM MODE
+═══════════════════════════════════════════ */
+const ENEM_TOPICS = {
+  ling: ['port'],
+  hum: ['hist','geo','fil','soc'],
+  mat: ['mat'],
+  nat: ['bio','fis','qui']
+};
+
+function getEnemQuestions(area, count=5){
+  const topics = ENEM_TOPICS[area];
+  const pool = BANCO.filter(q => topics.includes(q.topic));
+  return shuffle(pool).slice(0, count);
+}
+
+function startEnem(area){
+  lastArea = area;
+  enemQuestions = getEnemQuestions(area, 5);
+  enemIdx = 0;
+  enemScore = 0;
+  enemMissed = [];
+  if(enemQuestions.length===0){alert('Sem questões para esta área.');return;}
+  showScr('screen-enem-game');
+  loadEnemQuestion();
+}
+
+function loadEnemQuestion(){
+  document.getElementById('enemHudQ').textContent=`${enemIdx+1}/${enemQuestions.length}`;
+  document.getElementById('enemHudPts').textContent=enemScore;
+  document.getElementById('enemHudCorrect').textContent=enemScore;
+
+  const q = enemQuestions[enemIdx];
+  const map=CHIP_MAP[q.topic]||['ch-geo','🌍'];
+  document.getElementById('enemTopicChip').innerHTML=`<span class="chip ${map[0]}">${map[1]}</span>`;
+  document.getElementById('enemQNumText').textContent=`QUESTÃO ${enemIdx+1}`;
+  document.getElementById('enemQText').textContent = q.text;
+
+  const optsEl = document.getElementById('enemOpts');
+  optsEl.innerHTML = '';
+
+  q.options.forEach((opt, i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.innerHTML = `<span class="rpg-opt-k">${['A','B','C','D'][i]}</span>${esc(opt)}`;
+    btn.onclick = ()=>answerEnem(i);
+    optsEl.appendChild(btn);
+  });
+
+  document.getElementById('enemFb').classList.remove('show');
+  document.getElementById('enemNextBtn').classList.remove('show');
+}
+
+function answerEnem(choice){
+  const q = enemQuestions[enemIdx];
+  const ok = choice === q.answerIdx;
+
+  const opts = document.querySelectorAll('#enemOpts button');
+  opts.forEach((btn,i)=>{
+    btn.disabled = true;
+    if(i === q.answerIdx) btn.classList.add('correct');
+    if(i === choice && !ok) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('enemFb');
+  fb.classList.add('show');
+  fb.classList.remove('ok','no');
+  fb.classList.add(ok?'ok':'no');
+
+  document.getElementById('enemFbTitle').textContent = ok?'✅ CORRETO!':'❌ ERRADO!';
+  document.getElementById('enemFbBody').textContent = q.explain;
+
+  if(ok) enemScore++;
+  else enemMissed.push(q);
+
+  document.getElementById('enemNextBtn').classList.add('show');
+}
+
+document.getElementById('enemNextBtn').onclick = ()=>{
+  enemIdx++;
+  if(enemIdx < enemQuestions.length) loadEnemQuestion();
+  else showEnemResult();
+};
+
+function showEnemResult(){
+  const total = enemQuestions.length;
+  const acertos = enemScore;
+  const erros = total - acertos;
+  const pct = total>0 ? Math.round(acertos/total*100) : 0;
+
+  document.getElementById('enem_resPct').textContent = pct + '%';
+  document.getElementById('enem_rPts').textContent = acertos;
+  document.getElementById('enem_sAc').textContent = acertos;
+  document.getElementById('enem_sEr').textContent = erros;
+
+  const circ = document.getElementById('enem_rrFill');
+  const off = 327 - (327 * pct / 100);
+  setTimeout(()=> circ.style.strokeDashoffset = off, 100);
+
+  let grade='', gradeColor='';
+  if(pct>=90){grade='🏆 EXCEPCIONAL';gradeColor='var(--gold)';}
+  else if(pct>=75){grade='⭐ EXCELENTE';gradeColor='var(--mint)';}
+  else if(pct>=60){grade='✅ BOM';gradeColor='var(--blue)';}
+  else if(pct>=40){grade='📈 REGULAR';gradeColor='var(--text-muted)';}
+  else{grade='📉 PRECISA REVISAR';gradeColor='var(--primary)';}
+
+  const gradeEl = document.getElementById('enem_rGrade');
+  gradeEl.textContent = grade;
+  gradeEl.style.color = gradeColor;
+  gradeEl.style.borderColor = gradeColor;
+  gradeEl.style.background = gradeColor.replace('var(','rgba(').replace(')',',0.1)');
+
+  const best = loadBest();
+  if(acertos > best){ saveBest(acertos); document.getElementById('enem_sBst').textContent = acertos; }
+  else { document.getElementById('enem_sBst').textContent = best; }
+
+  if(enemMissed.length>0){
+    document.getElementById('enem_missList').style.display='block';
+    const body = document.getElementById('enem_missBody'); body.innerHTML='';
+    enemMissed.forEach(q=>{
+      const div=document.createElement('div');div.className='miss-item';
+      div.innerHTML=`<div class="miss-q">${esc(q.text)}</div><div class="miss-exp">${esc(q.explain)}</div>`;
+      body.appendChild(div);
+    });
+  } else {
+    document.getElementById('enem_missList').style.display='none';
+  }
+
+  showScr('screen-enem-result');
+}
+
+document.getElementById('enem_btnHome').addEventListener('click',()=>showScr('screen-enem'));
+document.getElementById('enem_btnRetry').addEventListener('click',()=>startEnem(lastArea));
+
+/* ═══════════════════════════════════════════
+   RPG DUNGEON MODE
+═══════════════════════════════════════════ */
+const RPG_ENEMIES=[
+  {id:'goblin',name:'Goblin das Sombras',sprite:'👹',badge:'💀',bg:'rgba(230,0,35,.15)',flavor:'Pequeno, rápido e traiçoeiro.',maxHp:3,diff:'FÁCIL',diffColor:'var(--mint)',diffBorder:'rgba(16,185,129,.3)',lvlFilter:'facil',qCount:5},
+  {id:'knight',name:'Cavaleiro Corrompido',sprite:'🪖',badge:'⚔️',bg:'rgba(245,158,11,.15)',flavor:'Armadura pesada.',maxHp:4,diff:'MÉDIO',diffColor:'var(--gold)',diffBorder:'rgba(245,158,11,.3)',lvlFilter:'medio',qCount:6},
+  {id:'mage',name:'Mago das Trevas',sprite:'🧙',badge:'🔮',bg:'rgba(139,92,246,.15)',flavor:'Feitiços devastadores.',maxHp:4,diff:'DIFÍCIL',diffColor:'var(--purple)',diffBorder:'rgba(139,92,246,.3)',lvlFilter:'dificil',qCount:6},
+  {id:'dragon',name:'Dragão Ancião',sprite:'🐉',badge:'🔥',bg:'rgba(255,77,77,.15)',flavor:'O guardião final.',maxHp:5,diff:'ÉPICO',diffColor:'var(--accent2)',diffBorder:'rgba(255,77,77,.3)',lvlFilter:'mixed',qCount:8}
+];
+
+function startRPG(){
+  rpgEnemyIdx=0;rpgTotalCorrect=0;rpgTotalWrong=0;rpgUsedIds=new Set();
+  loadRPGBattle();
+}
+
+function getRPGPool(enemy){
+  let allQuestions=[...BANCO];
+  let pool;
+  if(enemy.lvlFilter==='mixed'){
+    pool=allQuestions.filter(q=>!rpgUsedIds.has(makeQId(q)));
+  }else{
+    pool=allQuestions.filter(q=>q.lvl===enemy.lvlFilter&&!rpgUsedIds.has(makeQId(q)));
+    if(pool.length<enemy.qCount)pool=[...pool,...allQuestions.filter(q=>!rpgUsedIds.has(makeQId(q))&&!pool.includes(q))];
+  }
+  return shuffle(pool).slice(0,enemy.qCount);
+}
+function makeQId(q){return q.topic+':'+q.text.substring(0,20);}
+
+function loadRPGBattle(){
+  const enemy=RPG_ENEMIES[rpgEnemyIdx];
+  rpgHeroHp=3;rpgEnemyHp=enemy.maxHp;rpgEnemyMaxHp=enemy.maxHp;
+  rpgAnswered=false;rpgQIdx=0;rpgShuffled=[];
+  rpgQuestions=getRPGPool(enemy);
+  rpgQuestions.forEach(q=>{rpgShuffled.push(shuffle([0,1,2,3]).map(i=>({text:q.options[i],origIdx:i})));});
+
+  document.getElementById('dg-battle-title').textContent=`BATALHA ${rpgEnemyIdx+1}/${RPG_ENEMIES.length}`;
+  document.getElementById('dg-wave-label').textContent='vs '+enemy.name.toUpperCase();
+  showScr('screen-rpg-battle');
+
+  requestAnimationFrame(()=>{
+    const enemyEl=document.getElementById('enemySpriteEl');
+    enemyEl.classList.remove('defeat');
+    const enemyFrames=ENEMY_SPRITES[enemy.id];
+    if(enemyFrames&&enemyFrames[0]){enemyEl.innerHTML=enemyFrames[0];}
+    else{enemyEl.innerHTML=`<span style="font-size:3rem">${enemy.sprite}</span>`;}
+  });
+
+  // Herói
+  const heroEl=document.getElementById('heroSpriteEl');
+  heroEl.classList.remove('atk','hurt');
+  if(HERO_FRAMES[0]){
+    heroEl.innerHTML=HERO_FRAMES[0];
+    heroEl.dataset.idle=HERO_FRAMES[0];
+  } else {
+    heroEl.innerHTML='<span style="font-size:3rem">🧙‍♂️</span>';
+    heroEl.dataset.idle='<span style="font-size:3rem">🧙‍♂️</span>';
+  }
+
+  document.getElementById('enemyNameLabel').textContent=enemy.name.toUpperCase();
+  document.getElementById('eipBadge').textContent=enemy.badge;
+  document.getElementById('eipBadge').style.background=enemy.bg;
+  document.getElementById('eipName').textContent=enemy.name;
+  document.getElementById('eipFlavor').textContent=enemy.flavor;
+  document.getElementById('eipDiff').textContent=enemy.diff;
+  document.getElementById('eipDiff').style.color=enemy.diffColor;
+  document.getElementById('eipDiff').style.borderColor=enemy.diffBorder;
+  updateRPGHUD();
+  loadRPGQ();
+}
+
+function updateRPGHUD(){
+  document.getElementById('heroHpTxt').textContent=`${Math.max(0,rpgHeroHp)}/3`;
+  document.getElementById('heroHpFill').style.width=(rpgHeroHp/3*100)+'%';
+  document.getElementById('enemyHpTxt').textContent=`${Math.max(0,rpgEnemyHp)}/${rpgEnemyMaxHp}`;
+  document.getElementById('enemyHpFill').style.width=(Math.max(0,rpgEnemyHp)/rpgEnemyMaxHp*100)+'%';
+  document.getElementById('eipLives').textContent='❤️'.repeat(Math.max(0,rpgHeroHp))+'🖤'.repeat(Math.max(0,3-rpgHeroHp));
+}
+
+function loadRPGQ(){
+  if(rpgQIdx>=rpgQuestions.length){
+    showRPGOverlay('defeat','😵','Sem mais ataques!',`Você ficou sem perguntas e ${RPG_ENEMIES[rpgEnemyIdx].name} sobreviveu.`,'#c0392b',startRPG,'Tentar de novo');
+    return;
+  }
+  const q=rpgQuestions[rpgQIdx];
+  rpgAnswered=false;
+  const map=CHIP_MAP[q.topic]||['ch-geo','🌍'];
+  document.getElementById('rpgTopicChip').innerHTML=`<span class="chip ${map[0]}">${map[1]}</span>`;
+  document.getElementById('rpgQNum').textContent=`Q ${rpgQIdx+1}/${rpgQuestions.length}`;
+  document.getElementById('rpgQText').textContent=q.text;
+  const keys=['A','B','C','D'],opts=rpgShuffled[rpgQIdx];
+  const optsEl=document.getElementById('rpgOpts');optsEl.innerHTML='';
+  opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');btn.className='rpg-opt';btn.dataset.oidx=opt.origIdx;
+    btn.innerHTML=`<span class="rpg-opt-k">${keys[i]}</span>${esc(opt.text)}`;
+    btn.addEventListener('click',()=>rpgAnswer(btn));optsEl.appendChild(btn);
+  });
+  document.getElementById('rpgFb').className='rpg-fb';
+  document.getElementById('rpgNextBtn').classList.remove('show');
+}
+
+function rpgAnswer(btn){
+  if(rpgAnswered)return;rpgAnswered=true;
+  const chosen=parseInt(btn.dataset.oidx,10),q=rpgQuestions[rpgQIdx],ok=chosen===q.answerIdx;
+  btn.classList.add(ok?'correct-chosen':'wrong');
+  document.querySelectorAll('.rpg-opt').forEach(o=>o.disabled=true);
+  if(!ok){document.querySelectorAll('.rpg-opt').forEach(o=>{if(parseInt(o.dataset.oidx,10)===q.answerIdx)o.classList.add('correct');});}
+  rpgUsedIds.add(makeQId(q));
+  if(ok){
+    rpgTotalCorrect++;rpgEnemyHp--;
+    spawnDmgPop('⚔ −1','dmg-hit');
+    animHero('atk');
+    setTimeout(()=>animEnemy('hurt'),250);
+    showRPGFb(true,'⚔️ ACERTOU! O inimigo levou dano!',q.explain);
+    updateRPGHUD();
+    if(rpgEnemyHp<=0){setTimeout(()=>victoryBattle(),900);return;}
+  }else{
+    rpgTotalWrong++;rpgHeroHp--;
+    spawnDmgPop('💔 −1','dmg-miss');
+    animEnemy('atk');
+    setTimeout(()=>animHero('hurt'),250);
+    showRPGFb(false,'🛡️ ERROU! Você levou dano!',q.explain);
+    updateRPGHUD();
+    if(rpgHeroHp<=0){setTimeout(()=>showRPGOverlay('defeat','💀','DERROTA!',`${RPG_ENEMIES[rpgEnemyIdx].name} te derrotou!`,'#c0392b',startRPG,'Tentar de novo'),900);return;}
+  }
+  document.getElementById('rpgNextBtn').classList.add('show');
+}
+
+document.getElementById('rpgNextBtn').addEventListener('click',()=>{rpgQIdx++;loadRPGQ();});
+
+function victoryBattle(){
+  const enemy=RPG_ENEMIES[rpgEnemyIdx];
+  document.getElementById('enemySpriteEl').classList.add('defeat');
+  if(rpgEnemyIdx>=RPG_ENEMIES.length-1){
+    setTimeout(()=>showRPGOverlay('final','🏆','MASMORRA CONCLUÍDA!',`Você derrotou todos os ${RPG_ENEMIES.length} inimigos!`,'#f4a261',rpgGoHome,'🎉 Voltar ao início'),600);
+  }else{
+    setTimeout(()=>showRPGOverlay('victory','⚔️',`${enemy.name} derrotado!`,'Prepare-se para o próximo inimigo...','var(--mint)',()=>{hideRPGOverlay();rpgEnemyIdx++;showWaveBanner(()=>loadRPGBattle());},'Próxima batalha →'),600);
+  }
+}
+
+function showWaveBanner(cb){
+  const next=RPG_ENEMIES[rpgEnemyIdx];
+  const banner=document.getElementById('waveBanner');
+  document.getElementById('wbIcon').textContent=next.sprite;
+  document.getElementById('wbTitle').textContent=`BATALHA ${rpgEnemyIdx+1}: ${next.name.toUpperCase()}`;
+  document.getElementById('wbSub').textContent=next.flavor;
+  banner.classList.add('show');
+  setTimeout(()=>{banner.classList.remove('show');cb();},2400);
+}
+
+function showRPGOverlay(type,emoji,title,msg,color,btnCb,btnLabel){
+  const ov=document.getElementById('rpgOverlay');
+  const card=document.getElementById('rpgResultCard');
+  card.style.setProperty('--rc-color',color);
+  document.getElementById('rpgResEmoji').textContent=emoji;
+  document.getElementById('rpgResTitle').textContent=title;
+  document.getElementById('rpgResMsg').textContent=msg;
+  const btn=document.getElementById('rpgResBtnOk');
+  btn.textContent=btnLabel||'Continuar';btn.style.background=color;
+  btn.onclick=()=>{hideRPGOverlay();btnCb();};
+  ov.classList.add('show');
+}
+function hideRPGOverlay(){document.getElementById('rpgOverlay').classList.remove('show');}
+function rpgGoHome(){hideRPGOverlay();showScr('screen-home');}
+function confirmRPGExit(){if(confirm('Sair da batalha?'))rpgGoHome();}
+
+let heroAtkTimer=null;
+function animHero(type){
+  const el=document.getElementById('heroSpriteEl');
+  if(type==='atk'&&HERO_FRAMES.length>1){
+    el.classList.remove('atk','hurt');
+    let f=1;
+    clearInterval(heroAtkTimer);
+    heroAtkTimer=setInterval(()=>{
+      if(f<HERO_FRAMES.length){el.innerHTML=HERO_FRAMES[f];}
+      f++;
+      if(f>=HERO_FRAMES.length){
+        clearInterval(heroAtkTimer);
+        el.innerHTML=el.dataset.idle||HERO_FRAMES[0];
+      }
+    },80);
+  }else{
+    el.classList.remove('atk','hurt');void el.offsetWidth;el.classList.add(type);
+    setTimeout(()=>el.classList.remove(type),500);
+  }
+}
+
+let enemyAtkTimer=null;
+function animEnemy(type){
+  const enemy=RPG_ENEMIES[rpgEnemyIdx];
+  const el=document.getElementById('enemySpriteEl');
+  const frames=ENEMY_SPRITES[enemy.id]||[];
+  el.classList.remove('atk','hurt','defeat');
+  if(type==='atk'&&frames.length>1){
+    let f=1;
+    clearInterval(enemyAtkTimer);
+    enemyAtkTimer=setInterval(()=>{
+      if(f<frames.length){el.innerHTML=frames[f];}
+      f++;
+      if(f>=frames.length){
+        clearInterval(enemyAtkTimer);
+        el.innerHTML=frames[0];
+      }
+    },80);
+  }else{
+    void el.offsetWidth;
+    el.classList.add(type);
+    setTimeout(()=>el.classList.remove(type),500);
+  }
+}
+
+function spawnDmgPop(text,cls){
+  const zone=document.getElementById('battleZone');
+  const el=document.createElement('div');el.className=`dmg-pop ${cls}`;el.textContent=text;
+  zone.appendChild(el);setTimeout(()=>el.remove(),950);
+}
+
+function showRPGFb(ok,title,body){
+  const fb=document.getElementById('rpgFb');fb.className='rpg-fb show '+(ok?'ok':'no');
+  document.getElementById('rpgFbTitle').textContent=title;
+  document.getElementById('rpgFbBody').textContent=body;
+}
+
+/* ═══════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════ */
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(str){return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', async () => {
+  const saved=localStorage.getItem('enigmax-theme')||'dark';
+  document.documentElement.setAttribute('data-theme',saved);
+  document.getElementById('themeBtn').textContent=saved==='dark'?'🌙':'☀️';
+
+  try {
+    await carregarDados();
+    buildTopicRow();
+    buildRPGHomeList?.();
+    loadBest();
+    document.getElementById('loadingOverlay').classList.add('hide');
+    setTimeout(()=>document.getElementById('loadingOverlay').remove(),500);
+  } catch (err) {
+    console.error(err);
+    document.getElementById('loaderError').innerHTML =
+      '❌ ' + err.message + '<br><br>' +
+      '💡 Certifique-se de que os arquivos <b>data/banco.json</b> e <b>data/sprites.json</b> existem.<br><br>' +
+      'Se estiver testando localmente, rode um servidor (Live Server, python -m http.server).';
+  }
+});
+
+function buildRPGHomeList(){
+  // reservado para uso futuro (lista de inimigos na home do RPG)
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "idle": "assets/heroi/hero_idle.webp",
+    "atk": [
+      "assets/heroi/hero_atk1.webp",
+      "assets/heroi/hero_atk2.webp",
+      "assets/heroi/hero_atk3.webp",
+      "assets/heroi/hero_atk4.webp",
+      "assets/heroi/hero_atk5.webp",
+      "assets/heroi/hero_atk6.webp"
+    ]
+  },
+  "enemies": {
+    "goblin": { 
+      "idle": "assets/goblin/goblin_idle.webp", 
+      "atk": [
+        "assets/goblin/goblin_sprite_1.webp", 
+        "assets/goblin/goblin_sprite_2.webp", 
+        "assets/goblin/goblin_sprite_3.webp", 
+        "assets/goblin/goblin_sprite_4.webp"
+      ] 
+    },
+
+    "knight": { 
+      "idle": "assets/cavaleiro/Cavaleiro_corrompido_idle.webp", 
+      "atk": [
+        "assets/cavaleiro/Cavaleiro_corrompido_atk_1.webp", 
+        "assets/cavaleiro/Cavaleiro_corrompido_atk_2.webp",
+        "assets/cavaleiro/Cavaleiro_corrompido_atk_3.webp",
+        "assets/cavaleiro/Cavaleiro_corrompido_atk_4.webp",
+        "assets/cavaleiro/Cavaleiro_corrompido_atk_5.webp"
+      ]
+    },
+    
+    "mage": { 
+      "idle": "assets/mago/mago_idle.webp", 
+      "atk": [
+        "assets/mago/mago_atk_1.webp", 
+        "assets/mago/mago_atk_2.webp", 
+        "assets/mago/mago_atk_3.webp", 
+        "assets/mago/mago_atk_4.webp", 
+        "assets/mago/mago_atk_5.webp", 
+        "assets/mago/mago_atk_6.webp"
+      ]
+    },
+
+    "dragon": { 
+      "idle": "assets/dragao/dragon_idle.webp",   
+      "atk": [
+        "assets/dragao/dragon_atk_1.webp", 
+        "assets/dragao/dragon_atk_2.webp", 
+        "assets/dragao/dragon_atk_3.webp", 
+        "assets/dragao/dragon_atk_4.webp", 
+        "assets/dragao/dragon_atk_5.webp"
+      ] 
+    }
+  }
+}
