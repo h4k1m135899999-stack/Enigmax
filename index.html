@@ -59,6 +59,8 @@ img{max-width:100%}
 .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;height:var(--topH);padding:0 16px;padding-top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:2px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;padding:0}
 .brand-mark{width:38px;height:38px;flex-shrink:0;border:2px solid var(--ink);border-radius:10px;display:grid;place-items:center;background:var(--acc);color:#fff;box-shadow:3px 3px 0 var(--sh-acc);font:700 1.15rem var(--f);overflow:hidden}
+/* dark: nada de caixa clara nem vermelho saturado — a marca descansa como os outros botões */
+[data-theme="dark"] .brand-mark{background:var(--card);border-color:var(--line2);box-shadow:3px 3px 0 var(--sh)}
 .brand-mark img{width:100%;height:100%;object-fit:contain}
 .brand-mark.noimg::after{content:'E'}
 .brand-name{font:700 1.15rem var(--f);white-space:nowrap}
@@ -86,12 +88,17 @@ img{max-width:100%}
 .badge{display:inline-flex;gap:8px;align-items:center;border:2px solid var(--line);border-radius:999px;padding:6px 14px;font:600 .58rem var(--fm);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);background:var(--card);position:relative}
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3px var(--acc-dim);animation:blink 1.6s infinite;flex-shrink:0}
 .hero-title{font:700 clamp(2.7rem,11.5vw,5.2rem)/1 var(--f);letter-spacing:-.045em;margin:18px 0 0;display:flex;justify-content:center;align-items:center;position:relative}
-/* o carimbo X: se houver logo, ela mora aqui dentro */
-.xbox{position:relative;display:inline-grid;place-items:center;width:.9em;height:.9em;background:var(--acc);color:#fff;border-radius:.16em;margin-left:.1em;transform:rotate(-4deg);box-shadow:.08em .08em 0 var(--sh-acc);animation:stampIn .5s cubic-bezier(.2,1.7,.4,1) .28s backwards;overflow:hidden;transition:transform .25s}
-.xbox:hover{transform:rotate(6deg) scale(1.08)}
-.xbox img{position:absolute;inset:9%;width:82%;height:82%;object-fit:contain}
-.xbox .xf{font:800 .6em var(--f);line-height:1;display:none}
-@keyframes stampIn{0%{transform:rotate(10deg) scale(2.6);opacity:0}70%{transform:rotate(-6deg) scale(.94);opacity:1}100%{transform:rotate(-4deg) scale(1)}}
+/* ★ o X em forma de BRASÃO: duas lâminas cruzadas + a logo cravada no cruzamento ★ */
+.xcrest{position:relative;display:grid;place-items:center;width:1.16em;height:1.16em;margin-left:.14em;transform:rotate(-3deg);transition:transform .25s;flex-shrink:0}
+.xbar{position:absolute;left:50%;top:50%;width:1.5em;height:.21em;border-radius:.11em;background:var(--acc);box-shadow:.05em .05em 0 var(--sh-acc);animation:xIn .5s cubic-bezier(.25,.9,.3,1.15) .28s backwards}
+.xbar.a{transform:translate(-50%,-50%) rotate(45deg)}
+.xbar.b{transform:translate(-50%,-50%) rotate(-45deg);animation-name:xInB}
+@keyframes xIn{from{transform:translate(-50%,-50%) rotate(45deg) translateX(-1.7em);opacity:0}to{transform:translate(-50%,-50%) rotate(45deg);opacity:1}}
+@keyframes xInB{from{transform:translate(-50%,-50%) rotate(-45deg) translateX(1.7em);opacity:0}to{transform:translate(-50%,-50%) rotate(-45deg);opacity:1}}
+.crest-logo{position:relative;z-index:2;width:.62em;height:.62em;border-radius:.13em;display:grid;place-items:center;overflow:hidden;background:var(--card);border:.05em solid var(--line2);box-shadow:.055em .055em 0 var(--sh);animation:crestIn .42s cubic-bezier(.2,1.6,.4,1) .72s backwards}
+.crest-logo img{width:88%;height:88%;object-fit:contain}
+[data-theme="light"] .crest-logo{border-color:var(--ink)}
+@keyframes crestIn{0%{transform:scale(2.6) rotate(-16deg);opacity:0}70%{transform:scale(.9) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0deg)}}
 /* slogan estilo terminal */
 .hero-term{font:600 clamp(.74rem,2.8vw,.92rem) var(--fm);color:var(--mut);margin-top:16px;min-height:1.5em;letter-spacing:.01em;position:relative}
 .hero-term .p{color:var(--acc);font-weight:700;margin-right:.45em}
@@ -227,7 +234,7 @@ img{max-width:100%}
 .phero p{font:600 .6rem var(--fm);letter-spacing:.22em;color:var(--mut);text-transform:uppercase;margin-top:10px}
 .areas{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
 .area{display:flex;gap:13px;align-items:center;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:15px;cursor:pointer;box-shadow:4px 4px 0 var(--sh);transition:.15s;user-select:none}
-.a-ic{width:46px;height:46px;flex-shrink:0;border-radius:11px;border:2px solid;display:grid;place-items:center}
+.a-ic{width:46px;height:46px;flex-shrink:0;border-radius:11px;border:2px solid;display:grid;place-items:center;font:700 1.1rem var(--f)}
 .a-name{font:700 .98rem var(--f)}
 .a-desc{font:500 .62rem var(--fm);color:var(--mut);margin-top:4px;text-transform:uppercase;letter-spacing:.03em;line-height:1.5}
 .a-cnt{margin-left:auto;font:700 .78rem var(--fm);color:var(--mut);border:2px solid var(--line);border-radius:8px;padding:6px 9px;flex-shrink:0}
@@ -317,7 +324,6 @@ img{max-width:100%}
 .wave-card{background:var(--card);border:2.5px solid var(--wc,var(--acc));border-radius:18px;box-shadow:8px 8px 0 var(--sh);padding:24px 40px;text-align:center;animation:pop .35s;max-width:88vw}
 .wave-card>b{display:block;font:800 1.4rem var(--f);letter-spacing:.05em;text-transform:uppercase;color:var(--wc,var(--acc));margin:12px 0 5px}
 .wave-card span{font:500 .68rem var(--fm);color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
-/* retrato SVG do inimigo — palco escuro nos dois temas */
 .w-art{width:92px;height:92px;margin:0 auto;display:grid;place-items:center;color:var(--wc,var(--acc));background:#16131c;border:2.5px solid currentColor;border-radius:22px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.06)}
 #toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:var(--card);border:2px solid var(--line);border-left:5px solid var(--acc);border-radius:10px;padding:12px 16px;font:600 .76rem var(--fm);z-index:220;opacity:0;transition:.25s;max-width:min(460px,90vw);box-shadow:4px 4px 0 var(--sh);pointer-events:none}
 #toast.show{opacity:1;transform:translate(-50%,0)}
@@ -359,9 +365,10 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
   .btn-acc:hover{background:var(--acc-h)}
   .icon-btn:hover{border-color:var(--line2)}
   .desknav button:hover{color:var(--ink)}
+  .xcrest:hover{transform:rotate(5deg) scale(1.07)}
 }
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
@@ -399,7 +406,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
   <div class="wrap">
     <div class="hero">
       <span class="badge"><i class="dot"></i><span id="heroBadge">carregando o arsenal…</span></span>
-      <h1 class="hero-title">ENIGMA<span class="xbox"><img id="heroXImg" src="assets/logo.webp" alt=""><b class="xf" id="heroXf">X</b></span></h1>
+      <h1 class="hero-title">ENIGMA<span class="xcrest"><i class="xbar a"></i><i class="xbar b"></i><span class="crest-logo"><img src="assets/logo.webp" alt="ENIGMAX"></span></span></h1>
       <p class="hero-term"><span class="p">&gt;</span><span id="sloganTxt"></span><span class="cur"></span></p>
       <p class="hero-stats" id="heroStats">…</p>
     </div>
@@ -450,7 +457,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
     </div>
 
     <button class="btn btn-acc btn-block btn-big" id="btnStart" style="margin-top:18px"><span data-ic="play"></span>Iniciar sessão</button>
-    <p class="foot-note">v10.3 · em caso de bug, culpe o usuário</p>
+    <p class="foot-note">v10.4 · em caso de bug, culpe o usuário</p>
   </div>
 </section>
 
@@ -542,7 +549,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
         <span class="a-cnt" id="cnt-ling">…</span>
       </button>
       <button class="area" data-area="hum">
-        <span class="a-ic" style="color:#d97757;border-color:#d97757">⌛</span>
+        <span class="a-ic" style="color:#d97757;border-color:#d97757" data-ic="column" data-s="22"></span>
         <span><span class="a-name">Ciências Humanas</span><span class="a-desc">História · Geografia · Filosofia · Sociologia</span></span>
         <span class="a-cnt" id="cnt-hum">…</span>
       </button>
@@ -552,7 +559,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
         <span class="a-cnt" id="cnt-mat">…</span>
       </button>
       <button class="area" data-area="nat">
-        <span class="a-ic" style="color:#43d9a3;border-color:#43d9a3">⚛</span>
+        <span class="a-ic" style="color:#43d9a3;border-color:#43d9a3" data-ic="atom" data-s="22"></span>
         <span><span class="a-name">Ciências da Natureza</span><span class="a-desc">Física · Química · Biologia</span></span>
         <span class="a-cnt" id="cnt-nat">…</span>
       </button>
@@ -689,8 +696,8 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
 
 <script>
 /* ══════════════════════════════════════════════
-   ENIGMAX v10.3 — quiz arcade · arquivo único
-══════════════════════════════════════════════ */
+   ENIGMAX v10.4 — quiz arcade · arquivo único
+════════════════════════════════════ */
 'use strict';
 const $=id=>document.getElementById(id);
 const LETRAS=['A','B','C','D','E','F'];
@@ -698,7 +705,7 @@ const LETRAS=['A','B','C','D','E','F'];
 /* ── ícones SVG da UI ── */
 const SVG={
   home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V21h13V9.5"/>',
-  /* espadas cruzadas — nada de parecença com ♂ */
+  /* espadas cruzadas */
   sword:'<path d="M4.5 4.5 18 18"/><path d="M19.5 4.5 6 18"/><path d="m14.9 17.6 2.7-2.7"/><path d="m6.4 14.9 2.7 2.7"/><path d="M18 18l1.8 1.8"/><path d="M6 18 4.2 19.8"/>',
   cap:'<path d="M2.5 9.5 12 4.5l9.5 5L12 14.5z"/><path d="M6.5 12v4.2c0 1.6 2.5 2.8 5.5 2.8s5.5-1.2 5.5-2.8V12"/>',
   chart:'<path d="M4.5 20.5v-6"/><path d="M10 20.5V5.5"/><path d="M15.5 20.5v-9"/><path d="M3 20.5h18"/>',
@@ -716,7 +723,11 @@ const SVG={
   vol:'<path d="M11.5 4.5 6.5 9H3v6h3.5l5 4.5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>',
   volX:'<path d="M11.5 4.5 6.5 9H3v6h3.5l5 4.5z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/>',
   skull:'<path d="M12 3a7.5 7.5 0 0 0-7.5 7.5c0 2.6 1.3 4.4 3 5.6V19a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2.9c1.7-1.2 3-3 3-5.6A7.5 7.5 0 0 0 12 3z"/><circle cx="9.3" cy="11" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.7" cy="11" r="1.3" fill="currentColor" stroke="none"/>',
-  chev:'<path d="m6 9 6 6 6-6"/>'
+  chev:'<path d="m6 9 6 6 6-6"/>',
+  /* coluna grega — ciências humanas */
+  column:'<path d="M5 5h14"/><path d="M6.5 7.5h11"/><path d="m9 7.5.7 9"/><path d="M12 7.5v9"/><path d="m15 7.5-.7 9"/><path d="M6.5 16.5h11"/><path d="M5 19h14"/>',
+  /* átomo em traço — ciências da natureza */
+  atom:'<circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.8"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-60 12 12)"/>'
 };
 const ic=(n,s=18)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${SVG[n]||''}</svg>`;
 document.querySelectorAll('[data-ic]').forEach(el=>el.innerHTML=ic(el.dataset.ic,+(el.dataset.s||18)));
@@ -984,10 +995,10 @@ function poolFiltrado(){
 function startSession(){
   const p=poolFiltrado();
   if(App.mode==='match'){
-    if(PARES.length<8&&p.length<8){toast('⚠ O modo Combinar precisa de 8+ questões (ou lista "pares" no banco.json).');return}
+    if(PARES.length<8&&p.length<8){toast('O modo Combinar precisa de 8+ questões (ou lista "pares" no banco.json).');return}
     startMatch(p);return;
   }
-  if(p.length<5){toast('⚠ Só '+p.length+' questão(ões) para esses filtros. Abra tópicos/dificuldades.');return}
+  if(p.length<5){toast('Só '+p.length+' questão(ões) para esses filtros. Abra tópicos/dificuldades.');return}
   if(App.mode==='quiz')startPlay('quiz',p,15,'Quiz Clássico','geral');
   else if(App.mode==='timer')startPlay('timer',p,15,'Contra o Tempo','geral');
   else startPlay('survival',p,0,'Sobrevivência','geral');
@@ -1069,7 +1080,7 @@ function timeout(){
   const q=Play.q;
   lockOptions($('optList'),q,-1);
   Play.err++;Play.missed.push(q);perfAdd(q.topic,false);
-  showFb(false,'⏱ Tempo esgotado!','A resposta correta era: '+trunc(q.opts[q.ans],80)+(q.exp?'\n\n'+q.exp:''));
+  showFb(false,'✕ Tempo esgotado!','A resposta correta era: '+trunc(q.opts[q.ans],80)+(q.exp?'\n\n'+q.exp:''));
   S.no();hud();armNext();
 }
 function answer(i){
@@ -1159,7 +1170,7 @@ function startEnem(area){
   lastArea=area;
   const cfg=AREAS[area];
   const p=BANCO.filter(q=>cfg.topics.includes(q.topic));
-  if(p.length<5){toast('⚠ Sem questões suficientes para '+cfg.n.toLowerCase()+'.');return}
+  if(p.length<5){toast('Sem questões suficientes para '+cfg.n.toLowerCase()+'.');return}
   lastRun=()=>startEnem(area);
   startPlay('enem',p,5,cfg.n,cfg.n.toLowerCase(),'enem');
 }
@@ -1351,7 +1362,7 @@ function answerRpg(i,q){
       hpCells($('foeHp'),DG.foeMax,DG.foeHP);
       if(DG.foeHP<=0){foeEl.classList.remove('hurt');foeEl.classList.add('defeat')}
     },240);
-    showRpgFb(true,'⚔ Golpe certo! +100 pts',q.exp);
+    showRpgFb(true,'✓ Golpe certo! +100 pts',q.exp);
   }else{
     DG.err++;
     try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(e){}
@@ -1362,7 +1373,7 @@ function answerRpg(i,q){
       DG.heroHP=Math.max(0,DG.heroHP-1);
       hpCells($('heroHp'),3,DG.heroHP);
     },240);
-    showRpgFb(false,'🛡 Você errou! −1 HP',q.exp);
+    showRpgFb(false,'✕ Você errou! −1 HP',q.exp);
   }
   $('dgPtsPill').textContent=DG.pts+' pts';
   if(heroiMorre){setTimeout(()=>fimRPG(false),1400);return}
@@ -1485,14 +1496,15 @@ document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()
  $('roOk').onclick=()=>{$('rpgOvl').classList.remove('show');startRPG()};
  $('roSec').onclick=()=>{$('rpgOvl').classList.remove('show');setScreen('scr-rpg-home','rpg')};
 
-/* ── logo no carimbo X do hero (com fallback tipográfico) ── */
+/* ── logo no brasão do hero (sem logo → só as lâminas cruzadas) ── */
 (function(){
-  const img=$('heroXImg'),xf=$('heroXf');
+  const box=document.querySelector('.crest-logo');
+  if(!box)return;
+  const img=box.querySelector('img');
   if(!img)return;
-  const bad=()=>{img.remove();xf.style.display='block'};
-  const ok=()=>{xf.style.display='none'};
-  if(img.complete&&img.src){img.naturalWidth>0?ok():bad();return}
-  img.onload=ok;img.onerror=bad;
+  const bad=()=>box.remove();
+  if(img.complete){if(!img.naturalWidth)bad();return}
+  img.onerror=bad;
 })();
 
 /* tema salvo + slogan sorteado */
@@ -1517,7 +1529,7 @@ document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()
     $('loader').classList.add('hide');
   }catch(err){
     document.querySelector('.ld-txt').textContent='ERRO AO CARREGAR';
-    $('loaderErr').textContent='⚠ '+err.message+' — verifique a pasta data/.';
+    $('loaderErr').textContent=err.message+' — verifique a pasta data/.';
   }
 })();
 </script>
