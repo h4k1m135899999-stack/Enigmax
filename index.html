@@ -88,16 +88,43 @@ img{max-width:100%}
 .badge{display:inline-flex;gap:8px;align-items:center;border:2px solid var(--line);border-radius:999px;padding:6px 14px;font:600 .58rem var(--fm);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);background:var(--card);position:relative}
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 3px var(--acc-dim);animation:blink 1.6s infinite;flex-shrink:0}
 .hero-title{font:700 clamp(2.7rem,11.5vw,5.2rem)/1 var(--f);letter-spacing:-.045em;margin:18px 0 0;display:flex;justify-content:center;align-items:center;position:relative}
-/* ★ o X em forma de BRASÃO: duas lâminas cruzadas + a logo cravada no cruzamento ★ */
-.xcrest{position:relative;display:grid;place-items:center;width:1.16em;height:1.16em;margin-left:.14em;transform:rotate(-3deg);transition:transform .25s;flex-shrink:0}
-.xbar{position:absolute;left:50%;top:50%;width:1.5em;height:.21em;border-radius:.11em;background:var(--acc);box-shadow:.05em .05em 0 var(--sh-acc);animation:xIn .5s cubic-bezier(.25,.9,.3,1.15) .28s backwards}
-.xbar.a{transform:translate(-50%,-50%) rotate(45deg)}
-.xbar.b{transform:translate(-50%,-50%) rotate(-45deg);animation-name:xInB}
-@keyframes xIn{from{transform:translate(-50%,-50%) rotate(45deg) translateX(-1.7em);opacity:0}to{transform:translate(-50%,-50%) rotate(45deg);opacity:1}}
-@keyframes xInB{from{transform:translate(-50%,-50%) rotate(-45deg) translateX(1.7em);opacity:0}to{transform:translate(-50%,-50%) rotate(-45deg);opacity:1}}
-.crest-logo{position:relative;z-index:2;width:.62em;height:.62em;border-radius:.13em;display:grid;place-items:center;overflow:hidden;background:var(--card);border:.05em solid var(--line2);box-shadow:.055em .055em 0 var(--sh);animation:crestIn .42s cubic-bezier(.2,1.6,.4,1) .72s backwards}
-.crest-logo img{width:88%;height:88%;object-fit:contain}
-[data-theme="light"] .crest-logo{border-color:var(--ink)}
+/* ★ X-STRIKE: o X é o golpe final — dois cortes, faísca e linhas de velocidade ★ */
+.xstrike{position:relative;display:inline-block;width:.88em;height:.92em;margin-left:.12em;transform:rotate(-3deg);transition:transform .25s;flex-shrink:0;cursor:pointer}
+.xs{position:absolute;left:50%;top:50%;width:1.14em;height:.19em;border-radius:.09em;background:var(--acc);box-shadow:.05em .05em 0 var(--sh-acc)}
+.xs.a{transform:translate(-50%,-50%) rotate(46deg) skewX(-12deg)}
+.xs.b{transform:translate(-50%,-50%) rotate(-46deg) skewX(-12deg)}
+.xstrike.go .xs.a{animation:strikeA .42s cubic-bezier(.2,.9,.25,1.25) .22s both}
+.xstrike.go .xs.b{animation:strikeB .42s cubic-bezier(.2,.9,.25,1.25) .36s both}
+@keyframes strikeA{
+  0%{transform:translate(-50%,-50%) rotate(46deg) skewX(-12deg) translateX(-1.9em);opacity:0}
+  55%{opacity:1}
+  72%{transform:translate(-50%,-50%) rotate(46deg) skewX(-12deg) translateX(.07em)}
+  100%{transform:translate(-50%,-50%) rotate(46deg) skewX(-12deg)}
+}
+@keyframes strikeB{
+  0%{transform:translate(-50%,-50%) rotate(-46deg) skewX(-12deg) translateX(2.1em);opacity:0}
+  55%{opacity:1}
+  72%{transform:translate(-50%,-50%) rotate(-46deg) skewX(-12deg) translateX(-.06em)}
+  100%{transform:translate(-50%,-50%) rotate(-46deg) skewX(-12deg)}
+}
+/* faísca de impacto no cruzamento */
+.xspark{position:absolute;left:50%;top:50%;width:.48em;height:.48em;background:var(--gold);z-index:2;transform:translate(-50%,-50%) scale(0);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 .1em var(--gold))}
+.xstrike.go .xspark{animation:sparkPop .5s cubic-bezier(.2,1.5,.4,1) .52s both}
+@keyframes sparkPop{
+  0%{transform:translate(-50%,-50%) scale(0) rotate(0deg);opacity:0}
+  35%{opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1.2) rotate(60deg);opacity:0}
+}
+/* linhas de velocidade */
+.xline{position:absolute;left:50%;width:.3em;height:.05em;border-radius:.03em;background:var(--gold);opacity:0}
+.xline.l1,.xline.r1{top:calc(50% - .17em)}
+.xline.l2,.xline.r2{top:calc(50% + .17em)}
+.xstrike.go .xline{animation:zipL .36s ease-out both}
+.xstrike.go .xline.r1,.xstrike.go .xline.r2{animation-name:zipR}
+.xstrike.go .xline.l1,.xstrike.go .xline.r1{animation-delay:.5s}
+.xstrike.go .xline.l2,.xstrike.go .xline.r2{animation-delay:.58s}
+@keyframes zipL{0%{transform:translate(-50%,-50%) translateX(-.38em);opacity:0}35%{opacity:.9}100%{transform:translate(-50%,-50%) translateX(-1.15em);opacity:0}}
+@keyframes zipR{0%{transform:translate(-50%,-50%) translateX(.38em);opacity:0}35%{opacity:.9}100%{transform:translate(-50%,-50%) translateX(1.15em);opacity:0}}
 @keyframes crestIn{0%{transform:scale(2.6) rotate(-16deg);opacity:0}70%{transform:scale(.9) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0deg)}}
 /* slogan estilo terminal */
 .hero-term{font:600 clamp(.74rem,2.8vw,.92rem) var(--fm);color:var(--mut);margin-top:16px;min-height:1.5em;letter-spacing:.01em;position:relative}
@@ -365,7 +392,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
   .btn-acc:hover{background:var(--acc-h)}
   .icon-btn:hover{border-color:var(--line2)}
   .desknav button:hover{color:var(--ink)}
-  .xcrest:hover{transform:rotate(5deg) scale(1.07)}
+  .xstrike:hover{transform:rotate(4deg) scale(1.06)}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important}
@@ -406,7 +433,7 @@ body.inbattle #toast{bottom:calc(18px + env(safe-area-inset-bottom,0px))}
   <div class="wrap">
     <div class="hero">
       <span class="badge"><i class="dot"></i><span id="heroBadge">carregando o arsenal…</span></span>
-      <h1 class="hero-title">ENIGMA<span class="xcrest"><i class="xbar a"></i><i class="xbar b"></i><span class="crest-logo"><img src="assets/logo.webp" alt="ENIGMAX"></span></span></h1>
+      <h1 class="hero-title">ENIGMA<span class="xstrike go" id="xstrike" role="img" aria-label="X" title="clique para repetir o golpe"><i class="xs a" aria-hidden="true"></i><i class="xs b" aria-hidden="true"></i><i class="xline l1" aria-hidden="true"></i><i class="xline l2" aria-hidden="true"></i><i class="xline r1" aria-hidden="true"></i><i class="xline r2" aria-hidden="true"></i><span class="xspark" aria-hidden="true"></span></span></h1>
       <p class="hero-term"><span class="p">&gt;</span><span id="sloganTxt"></span><span class="cur"></span></p>
       <p class="hero-stats" id="heroStats">…</p>
     </div>
@@ -1496,15 +1523,11 @@ document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()
  $('roOk').onclick=()=>{$('rpgOvl').classList.remove('show');startRPG()};
  $('roSec').onclick=()=>{$('rpgOvl').classList.remove('show');setScreen('scr-rpg-home','rpg')};
 
-/* ── logo no brasão do hero (sem logo → só as lâminas cruzadas) ── */
+/* ── easter egg: clique no X do título para repetir o golpe ── */
 (function(){
-  const box=document.querySelector('.crest-logo');
-  if(!box)return;
-  const img=box.querySelector('img');
-  if(!img)return;
-  const bad=()=>box.remove();
-  if(img.complete){if(!img.naturalWidth)bad();return}
-  img.onerror=bad;
+  const x=$('xstrike');
+  if(!x)return;
+  x.addEventListener('click',()=>{x.classList.remove('go');void x.offsetWidth;x.classList.add('go');S.hit()});
 })();
 
 /* tema salvo + slogan sorteado */
