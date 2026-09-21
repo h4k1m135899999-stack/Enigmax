@@ -53,6 +53,16 @@
         "assets/dragao/dragon_atk_4.webp", 
         "assets/dragao/dragon_atk_5.webp"
       ] 
+    },
+
+    "esqueleto": {
+      "idle": "assets/esqueleto/esqueleto_idle.webp",
+      "atk": [
+        "assets/esqueleto/esqueleto_atk_1.webp",
+        "assets/esqueleto/esqueleto_atk_2.webp",
+        "assets/esqueleto/esqueleto_atk_3.webp",
+        "assets/esqueleto/esqueleto_atk_4.webp"
+      ]
     }
   }
 }
