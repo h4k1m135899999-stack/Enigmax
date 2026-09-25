@@ -83,6 +83,16 @@
         "assets/golem/golem_atk_3.webp",
         "assets/golem/golem_atk_4.webp"
       ]
+    },
+
+    "aranha": {
+      "idle": "assets/aranha/aranha_idle.webp",
+      "atk": [
+        "assets/aranha/aranha_atk_1.webp",
+        "assets/aranha/aranha_atk_2.webp",
+        "assets/aranha/aranha_atk_3.webp",
+        "assets/aranha/aranha_atk_4.webp"
+      ]
     }
   }
 }
