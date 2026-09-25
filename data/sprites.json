@@ -63,6 +63,26 @@
         "assets/esqueleto/esqueleto_atk_3.webp",
         "assets/esqueleto/esqueleto_atk_4.webp"
       ]
+    },
+
+    "orc": {
+      "idle": "assets/orc/org_idle.webp",
+      "atk": [
+        "assets/orc/org_atk_1.webp",
+        "assets/orc/org_atk_2.webp",
+        "assets/orc/org_atk_3.webp",
+        "assets/orc/org_atk_4.webp"
+      ]
+    },
+
+    "golem": {
+      "idle": "assets/golem/golem_idle.webp",
+      "atk": [
+        "assets/golem/golem_atk_1.webp",
+        "assets/golem/golem_atk_2.webp",
+        "assets/golem/golem_atk_3.webp",
+        "assets/golem/golem_atk_4.webp"
+      ]
     }
   }
 }
