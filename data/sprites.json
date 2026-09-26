@@ -2,12 +2,10 @@
   "hero": {
     "idle": "assets/heroi/hero_idle.webp",
     "atk": [
-      "assets/heroi/hero_atk1.webp",
-      "assets/heroi/hero_atk2.webp",
-      "assets/heroi/hero_atk3.webp",
-      "assets/heroi/hero_atk4.webp",
-      "assets/heroi/hero_atk5.webp",
-      "assets/heroi/hero_atk6.webp"
+      "assets/heroi/hero_atk_1.webp",
+      "assets/heroi/hero_atk_2.webp",
+      "assets/heroi/hero_atk_3.webp",
+      "assets/heroi/hero_atk_4.webp"
     ]
   },
   "enemies": {
